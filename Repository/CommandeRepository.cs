@@ -65,12 +65,12 @@ public static class CommandeRepository
         return result;
     }
 
-    public static async Task<int> Delete(Commande commande)
+    public static async Task<int> Delete(int id)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QueryDelete, connection);
-        command.Parameters.Add(new MySqlParameter("@id", commande.Id));
+        command.Parameters.Add(new MySqlParameter("@id", id));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;

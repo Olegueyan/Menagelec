@@ -74,12 +74,12 @@ public static class ProduitRepository
         return result;
     }
 
-    public static async Task<int> Delete(Produit produit)
+    public static async Task<int> Delete(int idProduit)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QueryDelete, connection);
-        command.Parameters.Add(new MySqlParameter("@idProduit", produit.IdProduit));
+        command.Parameters.Add(new MySqlParameter("@idProduit", idProduit));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
