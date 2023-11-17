@@ -1,0 +1,38 @@
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
+using Menagelec.Data;
+
+namespace Menagelec
+{
+    public partial class FormLogin : Form
+    {
+        public FormLogin()
+        {
+            InitializeComponent();
+
+            // Event registering
+            
+            buttonConnect.Click += buttonConnect_Click;
+        }
+        
+        private void buttonConnect_Click(object sender, EventArgs e)
+        {
+            var loginType = new LoginType
+            {
+                Login = textBoxUser.Text,
+                Password = textBoxPassword.Text
+            };
+
+            if (Constants.PossibleLogin.Any(type => type.Equals(loginType)))
+            {
+                Application.Exit();
+            }
+            else
+            {
+                textBoxUser.Text = "";
+                textBoxPassword.Text = "";
+            }
+        }
+    }
+}
