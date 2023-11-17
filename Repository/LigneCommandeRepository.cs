@@ -31,7 +31,7 @@ public static class LigneCommandeRepository
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var ligneCommandes = new Collection<LigneCommande>();
-        var command = new MySqlCommand(QueryInsertion, connection);
+        var command = new MySqlCommand(QuerySelectAll, connection);
         var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
