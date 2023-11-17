@@ -7,7 +7,7 @@ namespace Menagelec.Repository;
 
 public static class LigneCommandeRepository
 {
-    // TODO : gestion des exceptions, Read (unknown id)
+    // TODO : Specific - Read, Delete and Update
     
     private const string QueryInsertion = "INSERT INTO lignecommande (produit, commande, quantite) VALUES (@produit, @commande, @quantite)";
     
