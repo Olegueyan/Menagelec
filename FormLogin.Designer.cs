@@ -29,7 +29,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.pictureBoxMenagelec = new System.Windows.Forms.PictureBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.labelPassword = new System.Windows.Forms.Label();
@@ -41,7 +40,7 @@
             // 
             // pictureBoxMenagelec
             // 
-            this.pictureBoxMenagelec.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMenagelec.Image")));
+            this.pictureBoxMenagelec.Image = global::Menagelec.Properties.Resources.logo_menagelec;
             this.pictureBoxMenagelec.Location = new System.Drawing.Point(25, 25);
             this.pictureBoxMenagelec.Name = "pictureBoxMenagelec";
             this.pictureBoxMenagelec.Size = new System.Drawing.Size(300, 300);
