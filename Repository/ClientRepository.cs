@@ -11,7 +11,7 @@ public static class ClientRepository
     
     private const string QueryInsertion = "INSERT INTO client (civilite, nom, prenom, adresse, ville, cp, mail, tel) VALUES (@civilite, @nom, @prenom, @adresse, @ville, @cp, @mail, @tel)";
     private const string QuerySelect = "SELECT * FROM client WHERE idClient = @idClient";
-    private const string QueryUpdate = "UPDATE client SET civilite = @civilite, nom = @nom, prenom = @prenom, adresse = @dresse, ville = @ville, cp = @cp, mail = @mail, tel = @tel WHERE idClient = @idClient";
+    private const string QueryUpdate = "UPDATE client SET civilite = @civilite, nom = @nom, prenom = @prenom, adresse = @adresse, ville = @ville, cp = @cp, mail = @mail, tel = @tel WHERE idClient = @idClient";
     private const string QueryDelete = "DELETE FROM client WHERE idClient = @idClient";
     
     public static async Task<int> Create(Client client)
