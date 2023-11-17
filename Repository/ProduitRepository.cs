@@ -68,6 +68,7 @@ public static class ProduitRepository
         command.Parameters.Add(new MySqlParameter("@prix", produit.Prix));
         command.Parameters.Add(new MySqlParameter("@fichierImage", produit.FichierImage));
         command.Parameters.Add(new MySqlParameter("@pk_fournisseur", produit.PkFournisseur));
+        command.Parameters.Add(new MySqlParameter("@idProduit", produit.IdProduit));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;

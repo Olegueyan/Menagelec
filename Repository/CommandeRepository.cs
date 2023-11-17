@@ -59,6 +59,7 @@ public static class CommandeRepository
         command.Parameters.Add(new MySqlParameter("estPayee", commande.EstPayee));
         command.Parameters.Add(new MySqlParameter("@estExpediee", commande.EstExpediee));
         command.Parameters.Add(new MySqlParameter("@client", commande.Client));
+        command.Parameters.Add(new MySqlParameter("@id", commande.Id));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;

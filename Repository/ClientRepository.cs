@@ -71,6 +71,7 @@ public static class ClientRepository
         command.Parameters.Add(new MySqlParameter("@cp", client.Cp));
         command.Parameters.Add(new MySqlParameter("@mail", client.Mail));
         command.Parameters.Add(new MySqlParameter("@tel", client.Tel));
+        command.Parameters.Add(new MySqlParameter("@idClient", client.IdClient));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
