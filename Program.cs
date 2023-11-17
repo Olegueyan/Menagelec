@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Menagelec.Data;
+using Menagelec.Service;
 
 namespace Menagelec
 {
@@ -14,6 +13,15 @@ namespace Menagelec
         [STAThread]
         static void Main()
         {
+            DatabaseService.InitializeService(new MysqlParameters
+            {
+                Host = "localhost",
+                Port = "3306",
+                Database = "menagelec",
+                User = "admin",
+                Password = "ubTroTJBi08LCeR"
+            });
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
