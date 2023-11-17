@@ -120,6 +120,10 @@
         <Compile Include="FormLogin.Designer.cs">
             <DependentUpon>FormLogin.cs</DependentUpon>
         </Compile>
+        <Compile Include="Forms\CommandManagerForm.cs" />
+        <Compile Include="Forms\CommandManagerForm.Designer.cs" />
+        <Compile Include="Forms\MenuForm.cs" />
+        <Compile Include="Forms\MenuForm.Designer.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Repository\ClientRepository.cs" />
@@ -130,6 +134,8 @@
         <EmbeddedResource Include="FormLogin.resx">
           <DependentUpon>FormLogin.cs</DependentUpon>
         </EmbeddedResource>
+        <EmbeddedResource Include="Forms\CommandManagerForm.resx" />
+        <EmbeddedResource Include="Forms\MenuForm.resx" />
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -479,6 +485,8 @@
       <Content Include="external\imagesProduit\Thumbs.db" />
       <Content Include="external\PPE2_MENAGELEC_client-lourd_v1_sans_com.pdf" />
       <Content Include="menagelec.puml" />
+      <Content Include="Resources\commande_impayee.png" />
+      <Content Include="Resources\logo_menagelec.png" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Export\" />

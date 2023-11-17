@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Menagelec.Data;
+using Menagelec.Forms;
 
 namespace Menagelec
 {
@@ -26,7 +27,9 @@ namespace Menagelec
 
             if (Constants.PossibleLogin.Any(type => type.Equals(loginType)))
             {
-                Application.Exit();
+                Hide();
+                var menuForm = new MenuForm();
+                menuForm.Show();
             }
             else
             {
