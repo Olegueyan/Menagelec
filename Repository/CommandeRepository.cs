@@ -29,12 +29,12 @@ public static class CommandeRepository
         return result;
     }
     
-    public static async Task<Commande> Read(int id)
+    public static async Task<Commande> Read(int idCommande)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QuerySelect, connection);
-        command.Parameters.Add(new MySqlParameter("@id", id));
+        command.Parameters.Add(new MySqlParameter("@id", idCommande));
         var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
@@ -66,12 +66,12 @@ public static class CommandeRepository
         return result;
     }
 
-    public static async Task<int> Delete(int id)
+    public static async Task<int> Delete(int idCommande)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QueryDelete, connection);
-        command.Parameters.Add(new MySqlParameter("@id", id));
+        command.Parameters.Add(new MySqlParameter("@id", idCommande));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
