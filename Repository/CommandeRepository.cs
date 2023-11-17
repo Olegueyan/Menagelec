@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Menagelec.Entity;
 using Menagelec.Service;
@@ -28,12 +29,12 @@ public static class CommandeRepository
         return result;
     }
     
-    public static async Task<Commande> Read(int id)
+    public static async Task<Commande> Read(int idCommande)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QuerySelect, connection);
-        command.Parameters.Add(new MySqlParameter("@id", id));
+        command.Parameters.Add(new MySqlParameter("@id", idCommande));
         var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
@@ -59,17 +60,18 @@ public static class CommandeRepository
         command.Parameters.Add(new MySqlParameter("estPayee", commande.EstPayee));
         command.Parameters.Add(new MySqlParameter("@estExpediee", commande.EstExpediee));
         command.Parameters.Add(new MySqlParameter("@client", commande.Client));
+        command.Parameters.Add(new MySqlParameter("@id", commande.Id));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
     }
 
-    public static async Task<int> Delete(Commande commande)
+    public static async Task<int> Delete(int idCommande)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QueryDelete, connection);
-        command.Parameters.Add(new MySqlParameter("@id", commande.Id));
+        command.Parameters.Add(new MySqlParameter("@id", idCommande));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;

@@ -71,17 +71,18 @@ public static class ClientRepository
         command.Parameters.Add(new MySqlParameter("@cp", client.Cp));
         command.Parameters.Add(new MySqlParameter("@mail", client.Mail));
         command.Parameters.Add(new MySqlParameter("@tel", client.Tel));
+        command.Parameters.Add(new MySqlParameter("@idClient", client.IdClient));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
     }
 
-    public static async Task<int> Delete(Client client)
+    public static async Task<int> Delete(int idClient)
     {
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QueryDelete, connection);
-        command.Parameters.Add(new MySqlParameter("@idClient", client.IdClient));
+        command.Parameters.Add(new MySqlParameter("@idClient", idClient));
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
