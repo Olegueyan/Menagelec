@@ -1,0 +1,71 @@
+@startuml
+
+class Client <<entity>>
+{
+    - idClient: integer PRIMARY
+    - civilite: string - 10
+    - nom: string - 100
+    - prenom: string - 100
+    - adresse: string - 100
+    - ville: string - 150
+    - cp: string - 8
+    - mail: string - 255
+    - tel: string - 15
+}
+
+class ClientRepository <<repository>>
+{
+    
+}
+
+Client <-- ClientRepository
+
+class Commande <<entity>>
+{
+    - id: integer PRIMARY
+    - date: datetime
+    - estPayee: integer - 1
+    - estExpediee: integer - 1
+    - client: integer - Client
+}
+
+class CommandeRepository <<repository>>
+{
+    
+}
+
+Commande <-- CommandeRepository
+
+
+Client "1" -- "0..*" Commande : "commande"
+
+class Produit <<entity>>
+{
+    - idProduit: integer PRIMARY
+    - designation: string
+    - description: string
+    - dateAjout: datetime
+    - qte: integer
+    - prix: float - ####,##
+    - fichierImage: string - 255
+    - pk_fournisseur: integer
+}
+
+class ProduitRepository <<repository>>
+{
+    
+}
+
+Produit <-- ProduitRepository
+
+class LigneCommande <<entity>>
+{
+    - produit: integer - Produit
+    - commande: integer - Commande
+    - quantite: integer   
+}
+
+LigneCommande "0..*" o-- "1" Commande
+LigneCommande "0..*" o-- "1" Produit
+
+@enduml
