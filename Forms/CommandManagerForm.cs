@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using Menagelec.Entity;
+using Menagelec.Properties;
 using Menagelec.Repository;
 
 namespace Menagelec.Forms
@@ -120,10 +121,10 @@ namespace Menagelec.Forms
         private async void dataGridViewListeCommandes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[2].Value.ToString(), out var idClient);
-            var client = await ClientRepository.Read(idClient);
             
-            // Link client to client info pane
+            // Link client entity to client info pane
 
+            var client = await ClientRepository.Read(idClient);
             clientId.Text = client.IdClient.ToString();
             clientCivilite.Text = client.Civilite;
             clientNom.Text = client.Nom;
@@ -133,6 +134,17 @@ namespace Menagelec.Forms
             clientVille.Text = client.Ville;
             clientAdresseMail.Text = client.Mail;
             clientTelephone.Text = client.Tel;
+            
+            int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[0].Value.ToString(), out var idCommande);
+            
+            // Link command entity to command info pane
+
+            var command = await CommandeRepository.Read(idCommande);
+            commandId.Text = command.Id.ToString();
+            commandDate.Text = command.Date.ToString("dd/MM/yyyy");
+
+            paiementImage.BackgroundImage = (command.EstPayee == 1) ? Resources.etatOk : Resources.etatNotOk;
+            expeditionImage.BackgroundImage = (command.EstExpediee == 1) ? Resources.etatOk : Resources.etatNotOk;
         }
     }
 }

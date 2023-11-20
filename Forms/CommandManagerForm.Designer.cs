@@ -54,9 +54,21 @@ namespace Menagelec.Forms
             this.clientCivilite = new System.Windows.Forms.Label();
             this.clientId = new System.Windows.Forms.Label();
             this.clientLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.expeditionImage = new System.Windows.Forms.PictureBox();
+            this.paiementImage = new System.Windows.Forms.PictureBox();
+            this.commandEstExpedieeLabel = new System.Windows.Forms.Label();
+            this.commandEstPayeeLabel = new System.Windows.Forms.Label();
+            this.commandDate = new System.Windows.Forms.Label();
+            this.commandDateLabel = new System.Windows.Forms.Label();
+            this.commandId = new System.Windows.Forms.Label();
+            this.commandLabel = new System.Windows.Forms.Label();
             returnToMenuBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).BeginInit();
             this.paneClientInfo.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).BeginInit();
             this.SuspendLayout();
             // 
             // returnToMenuBtn
@@ -217,9 +229,8 @@ namespace Menagelec.Forms
             this.clientTelephone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientTelephone.Location = new System.Drawing.Point(131, 204);
             this.clientTelephone.Name = "clientTelephone";
-            this.clientTelephone.Size = new System.Drawing.Size(118, 18);
+            this.clientTelephone.Size = new System.Drawing.Size(0, 18);
             this.clientTelephone.TabIndex = 11;
-            this.clientTelephone.Text = "07 07 07 07 07";
             // 
             // clientAdresseMail
             // 
@@ -229,9 +240,8 @@ namespace Menagelec.Forms
             this.clientAdresseMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientAdresseMail.Location = new System.Drawing.Point(131, 172);
             this.clientAdresseMail.Name = "clientAdresseMail";
-            this.clientAdresseMail.Size = new System.Drawing.Size(39, 18);
+            this.clientAdresseMail.Size = new System.Drawing.Size(0, 18);
             this.clientAdresseMail.TabIndex = 10;
-            this.clientAdresseMail.Text = "mail";
             // 
             // clientTelephoneLabel
             // 
@@ -265,9 +275,8 @@ namespace Menagelec.Forms
             this.clientVille.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientVille.Location = new System.Drawing.Point(131, 134);
             this.clientVille.Name = "clientVille";
-            this.clientVille.Size = new System.Drawing.Size(39, 18);
+            this.clientVille.Size = new System.Drawing.Size(0, 18);
             this.clientVille.TabIndex = 7;
-            this.clientVille.Text = "Ville";
             // 
             // clientCp
             // 
@@ -277,9 +286,8 @@ namespace Menagelec.Forms
             this.clientCp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientCp.Location = new System.Drawing.Point(6, 134);
             this.clientCp.Name = "clientCp";
-            this.clientCp.Size = new System.Drawing.Size(53, 18);
+            this.clientCp.Size = new System.Drawing.Size(0, 18);
             this.clientCp.TabIndex = 6;
-            this.clientCp.Text = "00000";
             // 
             // clientAdresse
             // 
@@ -289,9 +297,8 @@ namespace Menagelec.Forms
             this.clientAdresse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientAdresse.Location = new System.Drawing.Point(6, 80);
             this.clientAdresse.Name = "clientAdresse";
-            this.clientAdresse.Size = new System.Drawing.Size(69, 18);
+            this.clientAdresse.Size = new System.Drawing.Size(0, 18);
             this.clientAdresse.TabIndex = 5;
-            this.clientAdresse.Text = "Adresse";
             // 
             // clientPrenom
             // 
@@ -301,9 +308,8 @@ namespace Menagelec.Forms
             this.clientPrenom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientPrenom.Location = new System.Drawing.Point(199, 38);
             this.clientPrenom.Name = "clientPrenom";
-            this.clientPrenom.Size = new System.Drawing.Size(67, 18);
+            this.clientPrenom.Size = new System.Drawing.Size(0, 18);
             this.clientPrenom.TabIndex = 4;
-            this.clientPrenom.Text = "Prenom";
             // 
             // clientNom
             // 
@@ -313,9 +319,8 @@ namespace Menagelec.Forms
             this.clientNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.clientNom.Location = new System.Drawing.Point(68, 38);
             this.clientNom.Name = "clientNom";
-            this.clientNom.Size = new System.Drawing.Size(44, 18);
+            this.clientNom.Size = new System.Drawing.Size(0, 18);
             this.clientNom.TabIndex = 3;
-            this.clientNom.Text = "Nom";
             // 
             // clientCivilite
             // 
@@ -326,9 +331,8 @@ namespace Menagelec.Forms
             this.clientCivilite.Location = new System.Drawing.Point(16, 38);
             this.clientCivilite.Name = "clientCivilite";
             this.clientCivilite.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.clientCivilite.Size = new System.Drawing.Size(22, 18);
+            this.clientCivilite.Size = new System.Drawing.Size(0, 18);
             this.clientCivilite.TabIndex = 2;
-            this.clientCivilite.Text = "M";
             // 
             // clientId
             // 
@@ -339,9 +343,8 @@ namespace Menagelec.Forms
             this.clientId.Location = new System.Drawing.Point(63, 0);
             this.clientId.Name = "clientId";
             this.clientId.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.clientId.Size = new System.Drawing.Size(17, 18);
+            this.clientId.Size = new System.Drawing.Size(0, 18);
             this.clientId.TabIndex = 1;
-            this.clientId.Text = "0";
             // 
             // clientLabel
             // 
@@ -355,12 +358,121 @@ namespace Menagelec.Forms
             this.clientLabel.TabIndex = 0;
             this.clientLabel.Text = "client";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.expeditionImage);
+            this.panel1.Controls.Add(this.paiementImage);
+            this.panel1.Controls.Add(this.commandEstExpedieeLabel);
+            this.panel1.Controls.Add(this.commandEstPayeeLabel);
+            this.panel1.Controls.Add(this.commandDate);
+            this.panel1.Controls.Add(this.commandDateLabel);
+            this.panel1.Controls.Add(this.commandId);
+            this.panel1.Controls.Add(this.commandLabel);
+            this.panel1.Location = new System.Drawing.Point(461, 394);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(380, 111);
+            this.panel1.TabIndex = 11;
+            // 
+            // expeditionImage
+            // 
+            this.expeditionImage.BackgroundImage = global::Menagelec.Properties.Resources.etatNotOk;
+            this.expeditionImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.expeditionImage.Location = new System.Drawing.Point(131, 83);
+            this.expeditionImage.Name = "expeditionImage";
+            this.expeditionImage.Size = new System.Drawing.Size(20, 20);
+            this.expeditionImage.TabIndex = 18;
+            this.expeditionImage.TabStop = false;
+            // 
+            // paiementImage
+            // 
+            this.paiementImage.BackgroundImage = global::Menagelec.Properties.Resources.etatNotOk;
+            this.paiementImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.paiementImage.Location = new System.Drawing.Point(131, 59);
+            this.paiementImage.Name = "paiementImage";
+            this.paiementImage.Size = new System.Drawing.Size(20, 20);
+            this.paiementImage.TabIndex = 17;
+            this.paiementImage.TabStop = false;
+            // 
+            // commandEstExpedieeLabel
+            // 
+            this.commandEstExpedieeLabel.AutoSize = true;
+            this.commandEstExpedieeLabel.BackColor = System.Drawing.Color.White;
+            this.commandEstExpedieeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandEstExpedieeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandEstExpedieeLabel.Location = new System.Drawing.Point(6, 85);
+            this.commandEstExpedieeLabel.Name = "commandEstExpedieeLabel";
+            this.commandEstExpedieeLabel.Size = new System.Drawing.Size(86, 18);
+            this.commandEstExpedieeLabel.TabIndex = 16;
+            this.commandEstExpedieeLabel.Text = "Expedition";
+            // 
+            // commandEstPayeeLabel
+            // 
+            this.commandEstPayeeLabel.AutoSize = true;
+            this.commandEstPayeeLabel.BackColor = System.Drawing.Color.White;
+            this.commandEstPayeeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandEstPayeeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandEstPayeeLabel.Location = new System.Drawing.Point(6, 59);
+            this.commandEstPayeeLabel.Name = "commandEstPayeeLabel";
+            this.commandEstPayeeLabel.Size = new System.Drawing.Size(78, 18);
+            this.commandEstPayeeLabel.TabIndex = 15;
+            this.commandEstPayeeLabel.Text = "Paiement\r\n";
+            // 
+            // commandDate
+            // 
+            this.commandDate.AutoSize = true;
+            this.commandDate.BackColor = System.Drawing.Color.White;
+            this.commandDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandDate.Location = new System.Drawing.Point(72, 28);
+            this.commandDate.Name = "commandDate";
+            this.commandDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.commandDate.Size = new System.Drawing.Size(0, 18);
+            this.commandDate.TabIndex = 14;
+            // 
+            // commandDateLabel
+            // 
+            this.commandDateLabel.AutoSize = true;
+            this.commandDateLabel.BackColor = System.Drawing.Color.White;
+            this.commandDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandDateLabel.Location = new System.Drawing.Point(6, 28);
+            this.commandDateLabel.Name = "commandDateLabel";
+            this.commandDateLabel.Size = new System.Drawing.Size(40, 18);
+            this.commandDateLabel.TabIndex = 13;
+            this.commandDateLabel.Text = "date";
+            // 
+            // commandId
+            // 
+            this.commandId.AutoSize = true;
+            this.commandId.BackColor = System.Drawing.Color.White;
+            this.commandId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandId.Location = new System.Drawing.Point(109, 0);
+            this.commandId.Name = "commandId";
+            this.commandId.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.commandId.Size = new System.Drawing.Size(0, 18);
+            this.commandId.TabIndex = 12;
+            // 
+            // commandLabel
+            // 
+            this.commandLabel.AutoSize = true;
+            this.commandLabel.BackColor = System.Drawing.Color.White;
+            this.commandLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandLabel.Location = new System.Drawing.Point(0, 0);
+            this.commandLabel.Name = "commandLabel";
+            this.commandLabel.Size = new System.Drawing.Size(112, 18);
+            this.commandLabel.TabIndex = 12;
+            this.commandLabel.Text = "commande n°\r\n";
+            // 
             // CommandManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1262, 721);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.paneClientInfo);
             this.Controls.Add(this.infoCommandLabel);
             this.Controls.Add(returnToMenuBtn);
@@ -377,12 +489,34 @@ namespace Menagelec.Forms
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CommandManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Gestion des commandes";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).EndInit();
             this.paneClientInfo.ResumeLayout(false);
             this.paneClientInfo.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox expeditionImage;
+
+        private System.Windows.Forms.Label commandEstExpedieeLabel;
+        private System.Windows.Forms.PictureBox paiementImage;
+
+        private System.Windows.Forms.Label commandEstPayeeLabel;
+
+        private System.Windows.Forms.Label commandDate;
+
+        private System.Windows.Forms.Label commandDateLabel;
+
+        private System.Windows.Forms.Label commandId;
+
+        private System.Windows.Forms.Label commandLabel;
+
+        private System.Windows.Forms.Panel panel1;
 
         private System.Windows.Forms.Label clientAdresseMailLabel;
         private System.Windows.Forms.Label clientAdresseMail;

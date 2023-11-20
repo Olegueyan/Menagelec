@@ -72,6 +72,26 @@ namespace Menagelec.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap etatNotOk {
+            get {
+                object obj = ResourceManager.GetObject("etatNotOk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap etatOk {
+            get {
+                object obj = ResourceManager.GetObject("etatOk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo_menagelec {
             get {
                 object obj = ResourceManager.GetObject("logo_menagelec", resourceCulture);

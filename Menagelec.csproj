@@ -486,6 +486,8 @@
       <Content Include="external\PPE2_MENAGELEC_client-lourd_v1_sans_com.pdf" />
       <Content Include="menagelec.puml" />
       <Content Include="Resources\commande_impayee.png" />
+      <Content Include="Resources\etatNotOk.png" />
+      <Content Include="Resources\etatOk.png" />
       <Content Include="Resources\logo_menagelec.png" />
     </ItemGroup>
     <ItemGroup>
