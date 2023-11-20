@@ -15,6 +15,13 @@ namespace Menagelec
             // Event registering
             
             buttonConnect.Click += buttonConnect_Click;
+            
+            // Keyboard handling
+
+            KeyDown += (sender, args) =>
+            {
+                if (args.KeyCode == Keys.Enter) buttonConnect.PerformClick();
+            };
         }
         
         private void buttonConnect_Click(object sender, EventArgs e)
