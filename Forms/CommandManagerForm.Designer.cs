@@ -63,12 +63,16 @@ namespace Menagelec.Forms
             this.commandDateLabel = new System.Windows.Forms.Label();
             this.commandId = new System.Windows.Forms.Label();
             this.commandLabel = new System.Windows.Forms.Label();
+            this.refCommandLabel = new System.Windows.Forms.Label();
+            this.refCommandNum = new System.Windows.Forms.Label();
+            this.dataGridViewCommandRef = new System.Windows.Forms.DataGridView();
             returnToMenuBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).BeginInit();
             this.paneClientInfo.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandRef)).BeginInit();
             this.SuspendLayout();
             // 
             // returnToMenuBtn
@@ -466,12 +470,54 @@ namespace Menagelec.Forms
             this.commandLabel.TabIndex = 12;
             this.commandLabel.Text = "commande n°\r\n";
             // 
+            // refCommandLabel
+            // 
+            this.refCommandLabel.AutoSize = true;
+            this.refCommandLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refCommandLabel.ForeColor = System.Drawing.Color.White;
+            this.refCommandLabel.Location = new System.Drawing.Point(461, 517);
+            this.refCommandLabel.Name = "refCommandLabel";
+            this.refCommandLabel.Size = new System.Drawing.Size(285, 17);
+            this.refCommandLabel.TabIndex = 12;
+            this.refCommandLabel.Text = "Nombre de références dans la commande : \r\n";
+            // 
+            // refCommandNum
+            // 
+            this.refCommandNum.AutoSize = true;
+            this.refCommandNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refCommandNum.ForeColor = System.Drawing.Color.White;
+            this.refCommandNum.Location = new System.Drawing.Point(752, 517);
+            this.refCommandNum.Name = "refCommandNum";
+            this.refCommandNum.Size = new System.Drawing.Size(8, 17);
+            this.refCommandNum.TabIndex = 13;
+            this.refCommandNum.Text = "\r\n";
+            // 
+            // dataGridViewCommandRef
+            // 
+            this.dataGridViewCommandRef.AllowUserToAddRows = false;
+            this.dataGridViewCommandRef.AllowUserToDeleteRows = false;
+            this.dataGridViewCommandRef.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewCommandRef.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewCommandRef.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCommandRef.GridColor = System.Drawing.Color.White;
+            this.dataGridViewCommandRef.Location = new System.Drawing.Point(461, 543);
+            this.dataGridViewCommandRef.Name = "dataGridViewCommandRef";
+            this.dataGridViewCommandRef.ReadOnly = true;
+            this.dataGridViewCommandRef.RowHeadersVisible = false;
+            this.dataGridViewCommandRef.RowTemplate.Height = 24;
+            this.dataGridViewCommandRef.Size = new System.Drawing.Size(380, 166);
+            this.dataGridViewCommandRef.TabIndex = 14;
+            this.dataGridViewCommandRef.TabStop = false;
+            // 
             // CommandManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1262, 721);
+            this.Controls.Add(this.dataGridViewCommandRef);
+            this.Controls.Add(this.refCommandNum);
+            this.Controls.Add(this.refCommandLabel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.paneClientInfo);
             this.Controls.Add(this.infoCommandLabel);
@@ -497,9 +543,15 @@ namespace Menagelec.Forms
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandRef)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label refCommandNum;
+        private System.Windows.Forms.DataGridView dataGridViewCommandRef;
+
+        private System.Windows.Forms.Label refCommandLabel;
 
         private System.Windows.Forms.PictureBox expeditionImage;
 

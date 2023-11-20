@@ -24,13 +24,18 @@ namespace Menagelec.Forms
 
             Load += async (sender, args) =>
             {
-                // Initialize DataGridView
+                // Initialize DataGridViews
                 
                 dataGridViewListeCommandes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             
                 dataGridViewListeCommandes.Columns.Add("idCommande", "idCommande");
                 dataGridViewListeCommandes.Columns.Add("date", "date");
                 dataGridViewListeCommandes.Columns.Add("client", "client");
+
+                dataGridViewCommandRef.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                
+                dataGridViewCommandRef.Columns.Add("Produit commandé", "Produit commandé");
+                dataGridViewCommandRef.Columns.Add("Quantité", "Quantité");
                 
                 InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAll());
                 numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
@@ -145,6 +150,15 @@ namespace Menagelec.Forms
 
             paiementImage.BackgroundImage = (command.EstPayee == 1) ? Resources.etatOk : Resources.etatNotOk;
             expeditionImage.BackgroundImage = (command.EstExpediee == 1) ? Resources.etatOk : Resources.etatNotOk;
+            
+            // Link lignecommande entity to lignecommand info pane
+
+            var lignecommandes = await LigneCommandeRepository.ReadAllLigneCommandeWithAsync(idCommande);
+            refCommandNum.Text = lignecommandes.Count.ToString();
+            foreach (var lignecommande in lignecommandes)
+            {
+                dataGridViewCommandRef.Rows.Add(lignecommande.Produit, lignecommande.Quantite);
+            }
         }
     }
 }
