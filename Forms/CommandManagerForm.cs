@@ -8,6 +8,8 @@ namespace Menagelec.Forms
 {
     public partial class CommandManagerForm : Form
     {
+        public static CommandManagerForm Instance = new();
+        
         public CommandManagerForm()
         {
             InitializeComponent();
@@ -107,6 +109,12 @@ namespace Menagelec.Forms
             {
                 if (!checkBoxLSAPayer.Checked) checkBoxLSTout.Checked = true;
             }
+        }
+
+        private void returnToMenuBtn_Click(object sender, EventArgs e)
+        {
+            Hide();
+            MenuForm.Instance.Show();
         }
     }
 }

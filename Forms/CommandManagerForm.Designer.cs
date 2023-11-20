@@ -31,6 +31,7 @@ namespace Menagelec.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.Button returnToMenuBtn;
             this.titleForm = new System.Windows.Forms.Label();
             this.labelListeCommandes = new System.Windows.Forms.Label();
             this.dataGridViewListeCommandes = new System.Windows.Forms.DataGridView();
@@ -39,8 +40,20 @@ namespace Menagelec.Forms
             this.checkBoxLSAExpedier = new System.Windows.Forms.CheckBox();
             this.numCommandesLabel = new System.Windows.Forms.Label();
             this.numCommandesValue = new System.Windows.Forms.Label();
+            returnToMenuBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).BeginInit();
             this.SuspendLayout();
+            // 
+            // returnToMenuBtn
+            // 
+            returnToMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            returnToMenuBtn.Location = new System.Drawing.Point(1151, 660);
+            returnToMenuBtn.Name = "returnToMenuBtn";
+            returnToMenuBtn.Size = new System.Drawing.Size(99, 49);
+            returnToMenuBtn.TabIndex = 8;
+            returnToMenuBtn.Text = "Retour au \r\nmenu";
+            returnToMenuBtn.UseVisualStyleBackColor = true;
+            returnToMenuBtn.Click += new System.EventHandler(this.returnToMenuBtn_Click);
             // 
             // titleForm
             // 
@@ -151,6 +164,7 @@ namespace Menagelec.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1262, 721);
+            this.Controls.Add(returnToMenuBtn);
             this.Controls.Add(this.numCommandesValue);
             this.Controls.Add(this.numCommandesLabel);
             this.Controls.Add(this.checkBoxLSAExpedier);
