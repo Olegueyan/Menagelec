@@ -116,5 +116,23 @@ namespace Menagelec.Forms
             Hide();
             MenuForm.Instance.Show();
         }
+
+        private async void dataGridViewListeCommandes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[2].Value.ToString(), out var idClient);
+            var client = await ClientRepository.Read(idClient);
+            
+            // Link client to client info pane
+
+            clientId.Text = client.IdClient.ToString();
+            clientCivilite.Text = client.Civilite;
+            clientNom.Text = client.Nom;
+            clientPrenom.Text = client.Prenom;
+            clientAdresse.Text = client.Adresse;
+            clientCp.Text = client.Cp;
+            clientVille.Text = client.Ville;
+            clientAdresseMail.Text = client.Mail;
+            clientTelephone.Text = client.Tel;
+        }
     }
 }
