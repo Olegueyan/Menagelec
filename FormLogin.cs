@@ -18,9 +18,16 @@ namespace Menagelec
             
             // Keyboard handling
 
+            KeyPreview = true;
+            AcceptButton = null;
+            
             KeyDown += (sender, args) =>
             {
-                if (args.KeyCode == Keys.Enter) buttonConnect.PerformClick();
+                if (args.KeyCode == Keys.Enter)
+                {
+                    args.SuppressKeyPress = true;
+                    buttonConnect.PerformClick();
+                };
             };
         }
         
@@ -42,6 +49,7 @@ namespace Menagelec
             {
                 textBoxUser.Text = "";
                 textBoxPassword.Text = "";
+                MessageBox.Show(@"Invalid login !");
             }
         }
     }
