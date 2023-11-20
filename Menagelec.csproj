@@ -120,6 +120,8 @@
         <Compile Include="FormLogin.Designer.cs">
             <DependentUpon>FormLogin.cs</DependentUpon>
         </Compile>
+        <Compile Include="Forms\CommandManagerForm.cs" />
+        <Compile Include="Forms\CommandManagerForm.Designer.cs" />
         <Compile Include="Forms\MenuForm.cs" />
         <Compile Include="Forms\MenuForm.Designer.cs" />
         <Compile Include="Program.cs" />
@@ -132,6 +134,7 @@
         <EmbeddedResource Include="FormLogin.resx">
           <DependentUpon>FormLogin.cs</DependentUpon>
         </EmbeddedResource>
+        <EmbeddedResource Include="Forms\CommandManagerForm.resx" />
         <EmbeddedResource Include="Forms\MenuForm.resx" />
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
