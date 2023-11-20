@@ -489,6 +489,7 @@
       <Content Include="Resources\etatNotOk.png" />
       <Content Include="Resources\etatOk.png" />
       <Content Include="Resources\logo_menagelec.png" />
+      <Content Include="Resources\_1394462228_Silver_button.png" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Export\" />

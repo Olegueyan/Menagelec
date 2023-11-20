@@ -20,6 +20,8 @@ public static class CommandeRepository
     
     private const string QuerySelectEstPayee = "SELECT * FROM commande WHERE estPayee = 1";
     private const string QuerySelectEstExpediee = "SELECT * FROM commande WHERE estExpediee = 1";
+
+    private const string QuerySelectSearchClient = "SELECT * FROM commande WHERE client = @client";
     
     public static async Task<int> Create(Commande commande)
     {
@@ -110,6 +112,18 @@ public static class CommandeRepository
         var connection = DatabaseService.GetConnection();
         await connection.OpenAsync();
         var command = new MySqlCommand(QuerySelectEstExpediee, connection);
+        var reader = await command.ExecuteReaderAsync();
+        var commandes = await ExtractCommandesFromReader(reader);
+        await connection.CloseAsync();
+        return commandes;
+    }
+
+    public static async Task<Collection<Commande>> ReadAllSearchedClient(int idClient)
+    {
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QuerySelectSearchClient, connection);
+        command.Parameters.Add(new MySqlParameter("@client", idClient));
         var reader = await command.ExecuteReaderAsync();
         var commandes = await ExtractCommandesFromReader(reader);
         await connection.CloseAsync();

@@ -160,5 +160,24 @@ namespace Menagelec.Forms
                 dataGridViewCommandRef.Rows.Add(lignecommande.Produit, lignecommande.Quantite);
             }
         }
+
+        private async void checkBoxClientSearch_CheckedChanged(object sender, EventArgs e)
+        {
+            int.TryParse(textBoxClientSearch.Text, out var idClient);
+            InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAllSearchedClient(idClient));
+            numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
+            checkBoxClientSearch.Checked = false;
+            textBoxClientSearch.Text = "";
+        }
+
+        private async void checkBoxCommandSearch_CheckedChanged(object sender, EventArgs e)
+        {
+            int.TryParse(textBoxCommandSearch.Text, out var idCommande);
+            var uselessCollection = new Collection<Commande> { await CommandeRepository.Read(idCommande) };
+            InsertCommandesIntoDataGridView(dataGridViewListeCommandes, uselessCollection);
+            numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
+            checkBoxCommandSearch.Checked = false;
+            textBoxCommandSearch.Text = "";
+        }
     }
 }

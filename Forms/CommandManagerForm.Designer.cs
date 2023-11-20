@@ -54,7 +54,7 @@ namespace Menagelec.Forms
             this.clientCivilite = new System.Windows.Forms.Label();
             this.clientId = new System.Windows.Forms.Label();
             this.clientLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelCommandInfo = new System.Windows.Forms.Panel();
             this.expeditionImage = new System.Windows.Forms.PictureBox();
             this.paiementImage = new System.Windows.Forms.PictureBox();
             this.commandEstExpedieeLabel = new System.Windows.Forms.Label();
@@ -66,10 +66,17 @@ namespace Menagelec.Forms
             this.refCommandLabel = new System.Windows.Forms.Label();
             this.refCommandNum = new System.Windows.Forms.Label();
             this.dataGridViewCommandRef = new System.Windows.Forms.DataGridView();
+            this.specificSearchLabel = new System.Windows.Forms.Label();
+            this.textBoxClientSearch = new System.Windows.Forms.TextBox();
+            this.labelSearchClient = new System.Windows.Forms.Label();
+            this.checkBoxClientSearch = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxCommandSearch = new System.Windows.Forms.TextBox();
+            this.checkBoxCommandSearch = new System.Windows.Forms.CheckBox();
             returnToMenuBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).BeginInit();
             this.paneClientInfo.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelCommandInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandRef)).BeginInit();
@@ -362,25 +369,25 @@ namespace Menagelec.Forms
             this.clientLabel.TabIndex = 0;
             this.clientLabel.Text = "client";
             // 
-            // panel1
+            // panelCommandInfo
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.expeditionImage);
-            this.panel1.Controls.Add(this.paiementImage);
-            this.panel1.Controls.Add(this.commandEstExpedieeLabel);
-            this.panel1.Controls.Add(this.commandEstPayeeLabel);
-            this.panel1.Controls.Add(this.commandDate);
-            this.panel1.Controls.Add(this.commandDateLabel);
-            this.panel1.Controls.Add(this.commandId);
-            this.panel1.Controls.Add(this.commandLabel);
-            this.panel1.Location = new System.Drawing.Point(461, 394);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(380, 111);
-            this.panel1.TabIndex = 11;
+            this.panelCommandInfo.BackColor = System.Drawing.Color.White;
+            this.panelCommandInfo.Controls.Add(this.expeditionImage);
+            this.panelCommandInfo.Controls.Add(this.paiementImage);
+            this.panelCommandInfo.Controls.Add(this.commandEstExpedieeLabel);
+            this.panelCommandInfo.Controls.Add(this.commandEstPayeeLabel);
+            this.panelCommandInfo.Controls.Add(this.commandDate);
+            this.panelCommandInfo.Controls.Add(this.commandDateLabel);
+            this.panelCommandInfo.Controls.Add(this.commandId);
+            this.panelCommandInfo.Controls.Add(this.commandLabel);
+            this.panelCommandInfo.Location = new System.Drawing.Point(461, 394);
+            this.panelCommandInfo.Name = "panelCommandInfo";
+            this.panelCommandInfo.Size = new System.Drawing.Size(380, 111);
+            this.panelCommandInfo.TabIndex = 11;
             // 
             // expeditionImage
             // 
-            this.expeditionImage.BackgroundImage = global::Menagelec.Properties.Resources.etatNotOk;
+            this.expeditionImage.BackgroundImage = global::Menagelec.Properties.Resources._1394462228_Silver_button;
             this.expeditionImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.expeditionImage.Location = new System.Drawing.Point(131, 83);
             this.expeditionImage.Name = "expeditionImage";
@@ -390,7 +397,7 @@ namespace Menagelec.Forms
             // 
             // paiementImage
             // 
-            this.paiementImage.BackgroundImage = global::Menagelec.Properties.Resources.etatNotOk;
+            this.paiementImage.BackgroundImage = global::Menagelec.Properties.Resources._1394462228_Silver_button;
             this.paiementImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.paiementImage.Location = new System.Drawing.Point(131, 59);
             this.paiementImage.Name = "paiementImage";
@@ -420,7 +427,7 @@ namespace Menagelec.Forms
             this.commandEstPayeeLabel.Name = "commandEstPayeeLabel";
             this.commandEstPayeeLabel.Size = new System.Drawing.Size(78, 18);
             this.commandEstPayeeLabel.TabIndex = 15;
-            this.commandEstPayeeLabel.Text = "Paiement\r\n";
+            this.commandEstPayeeLabel.Text = "Paiement";
             // 
             // commandDate
             // 
@@ -431,7 +438,7 @@ namespace Menagelec.Forms
             this.commandDate.Location = new System.Drawing.Point(72, 28);
             this.commandDate.Name = "commandDate";
             this.commandDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.commandDate.Size = new System.Drawing.Size(0, 18);
+            this.commandDate.Size = new System.Drawing.Size(40, 18);
             this.commandDate.TabIndex = 14;
             // 
             // commandDateLabel
@@ -442,7 +449,7 @@ namespace Menagelec.Forms
             this.commandDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.commandDateLabel.Location = new System.Drawing.Point(6, 28);
             this.commandDateLabel.Name = "commandDateLabel";
-            this.commandDateLabel.Size = new System.Drawing.Size(40, 18);
+            this.commandDateLabel.Size = new System.Drawing.Size(0, 18);
             this.commandDateLabel.TabIndex = 13;
             this.commandDateLabel.Text = "date";
             // 
@@ -468,7 +475,7 @@ namespace Menagelec.Forms
             this.commandLabel.Name = "commandLabel";
             this.commandLabel.Size = new System.Drawing.Size(112, 18);
             this.commandLabel.TabIndex = 12;
-            this.commandLabel.Text = "commande n°\r\n";
+            this.commandLabel.Text = "commande n°";
             // 
             // refCommandLabel
             // 
@@ -509,16 +516,99 @@ namespace Menagelec.Forms
             this.dataGridViewCommandRef.TabIndex = 14;
             this.dataGridViewCommandRef.TabStop = false;
             // 
+            // specificSearchLabel
+            // 
+            this.specificSearchLabel.AutoSize = true;
+            this.specificSearchLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.specificSearchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.specificSearchLabel.ForeColor = System.Drawing.Color.White;
+            this.specificSearchLabel.Location = new System.Drawing.Point(969, 75);
+            this.specificSearchLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.specificSearchLabel.Name = "specificSearchLabel";
+            this.specificSearchLabel.Size = new System.Drawing.Size(199, 25);
+            this.specificSearchLabel.TabIndex = 15;
+            this.specificSearchLabel.Text = "Recherche spécifique";
+            this.specificSearchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxClientSearch
+            // 
+            this.textBoxClientSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxClientSearch.Location = new System.Drawing.Point(916, 195);
+            this.textBoxClientSearch.Name = "textBoxClientSearch";
+            this.textBoxClientSearch.Size = new System.Drawing.Size(266, 23);
+            this.textBoxClientSearch.TabIndex = 16;
+            // 
+            // labelSearchClient
+            // 
+            this.labelSearchClient.AutoSize = true;
+            this.labelSearchClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSearchClient.ForeColor = System.Drawing.Color.White;
+            this.labelSearchClient.Location = new System.Drawing.Point(916, 157);
+            this.labelSearchClient.Name = "labelSearchClient";
+            this.labelSearchClient.Size = new System.Drawing.Size(164, 20);
+            this.labelSearchClient.TabIndex = 17;
+            this.labelSearchClient.Text = "Rechercher un client";
+            // 
+            // checkBoxClientSearch
+            // 
+            this.checkBoxClientSearch.AutoSize = true;
+            this.checkBoxClientSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkBoxClientSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxClientSearch.Location = new System.Drawing.Point(1216, 199);
+            this.checkBoxClientSearch.Name = "checkBoxClientSearch";
+            this.checkBoxClientSearch.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxClientSearch.TabIndex = 18;
+            this.checkBoxClientSearch.UseVisualStyleBackColor = true;
+            this.checkBoxClientSearch.CheckedChanged += new System.EventHandler(this.checkBoxClientSearch_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(916, 264);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(215, 20);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Rechercher une commande";
+            // 
+            // textBoxCommandSearch
+            // 
+            this.textBoxCommandSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCommandSearch.Location = new System.Drawing.Point(916, 302);
+            this.textBoxCommandSearch.Name = "textBoxCommandSearch";
+            this.textBoxCommandSearch.Size = new System.Drawing.Size(266, 23);
+            this.textBoxCommandSearch.TabIndex = 20;
+            // 
+            // checkBoxCommandSearch
+            // 
+            this.checkBoxCommandSearch.AutoSize = true;
+            this.checkBoxCommandSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkBoxCommandSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCommandSearch.Location = new System.Drawing.Point(1216, 306);
+            this.checkBoxCommandSearch.Name = "checkBoxCommandSearch";
+            this.checkBoxCommandSearch.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxCommandSearch.TabIndex = 21;
+            this.checkBoxCommandSearch.UseVisualStyleBackColor = true;
+            this.checkBoxCommandSearch.CheckedChanged += new System.EventHandler(this.checkBoxCommandSearch_CheckedChanged);
+            // 
             // CommandManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1262, 721);
+            this.Controls.Add(this.checkBoxCommandSearch);
+            this.Controls.Add(this.textBoxCommandSearch);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.checkBoxClientSearch);
+            this.Controls.Add(this.labelSearchClient);
+            this.Controls.Add(this.textBoxClientSearch);
+            this.Controls.Add(this.specificSearchLabel);
             this.Controls.Add(this.dataGridViewCommandRef);
             this.Controls.Add(this.refCommandNum);
             this.Controls.Add(this.refCommandLabel);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelCommandInfo);
             this.Controls.Add(this.paneClientInfo);
             this.Controls.Add(this.infoCommandLabel);
             this.Controls.Add(returnToMenuBtn);
@@ -535,12 +625,11 @@ namespace Menagelec.Forms
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CommandManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gestion des commandes";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).EndInit();
             this.paneClientInfo.ResumeLayout(false);
             this.paneClientInfo.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelCommandInfo.ResumeLayout(false);
+            this.panelCommandInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandRef)).EndInit();
@@ -548,7 +637,22 @@ namespace Menagelec.Forms
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.TextBox textBoxCommandSearch;
+        
+        private System.Windows.Forms.CheckBox checkBoxCommandSearch;
+
+        private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.CheckBox checkBoxClientSearch;
+
+        private System.Windows.Forms.Label labelSearchClient;
+
+        private System.Windows.Forms.TextBox textBoxClientSearch;
+
+        private System.Windows.Forms.Label specificSearchLabel;
+
         private System.Windows.Forms.Label refCommandNum;
+        
         private System.Windows.Forms.DataGridView dataGridViewCommandRef;
 
         private System.Windows.Forms.Label refCommandLabel;
@@ -556,6 +660,7 @@ namespace Menagelec.Forms
         private System.Windows.Forms.PictureBox expeditionImage;
 
         private System.Windows.Forms.Label commandEstExpedieeLabel;
+        
         private System.Windows.Forms.PictureBox paiementImage;
 
         private System.Windows.Forms.Label commandEstPayeeLabel;
@@ -568,9 +673,10 @@ namespace Menagelec.Forms
 
         private System.Windows.Forms.Label commandLabel;
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelCommandInfo;
 
         private System.Windows.Forms.Label clientAdresseMailLabel;
+        
         private System.Windows.Forms.Label clientAdresseMail;
 
         private System.Windows.Forms.Label clientTelephoneLabel;
