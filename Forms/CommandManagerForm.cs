@@ -45,6 +45,11 @@ namespace Menagelec.Forms
         }
 
 
+        /**
+         * When the CheckedState change
+         *
+         * Checked is True : Get all commands
+         */
         private async void checkBoxLSTout_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxLSTout.Checked)
@@ -61,6 +66,11 @@ namespace Menagelec.Forms
             }
         }
 
+        /**
+         * When the CheckedState change
+         *
+         * Checked is True : Get all commands "APayer"
+         */
         private async void checkBoxLSAPayer_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxLSAPayer.Checked)
@@ -79,6 +89,11 @@ namespace Menagelec.Forms
             }
         }
 
+        /**
+         * When the CheckedState change
+         *
+         * Checked is True : Get all commands "AExpedier"
+         */
         private async void checkBoxLSAExpedier_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxLSAExpedier.Checked)
@@ -90,10 +105,7 @@ namespace Menagelec.Forms
             }
             else
             {
-                if (!checkBoxLSAPayer.Checked)
-                {
-                    checkBoxLSTout.Checked = true;
-                }
+                if (!checkBoxLSAPayer.Checked) checkBoxLSTout.Checked = true;
             }
         }
     }
