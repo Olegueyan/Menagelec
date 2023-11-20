@@ -1,4 +1,5 @@
-using System;
+using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Threading.Tasks;
 using Menagelec.Entity;
 using Menagelec.Service;
@@ -14,6 +15,11 @@ public static class CommandeRepository
     private const string QuerySelect = "SELECT * FROM commande WHERE id = @id";
     private const string QueryUpdate = "UPDATE commande SET date = @date, estPayee = @estPayee, estExpediee = @estExpediee, client = @client WHERE id = @id";
     private const string QueryDelete = "DELETE FROM commande WHERE id = @id";
+    
+    private const string QuerySelectAll = "SELECT * FROM commande";
+    
+    private const string QuerySelectEstPayee = "SELECT * FROM commande WHERE estPayee = 1";
+    private const string QuerySelectEstExpediee = "SELECT * FROM commande WHERE estExpediee = 1";
     
     public static async Task<int> Create(Commande commande)
     {
@@ -75,5 +81,54 @@ public static class CommandeRepository
         var result = await command.ExecuteNonQueryAsync();
         await connection.CloseAsync();
         return result;
+    }
+    
+    public static async Task<Collection<Commande>> ReadAll()
+    {
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QuerySelectAll, connection);
+        var reader = await command.ExecuteReaderAsync();
+        var commandes = await ExtractCommandesFromReader(reader);
+        await connection.CloseAsync();
+        return commandes;
+    }
+    
+    public static async Task<Collection<Commande>> ReadAllEstPayee()
+    {
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QuerySelectEstPayee, connection);
+        var reader = await command.ExecuteReaderAsync();
+        var commandes = await ExtractCommandesFromReader(reader);
+        await connection.CloseAsync();
+        return commandes;
+    }
+    
+    public static async Task<Collection<Commande>> ReadAllEstExpediee()
+    {
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QuerySelectEstExpediee, connection);
+        var reader = await command.ExecuteReaderAsync();
+        var commandes = await ExtractCommandesFromReader(reader);
+        await connection.CloseAsync();
+        return commandes;
+    }
+
+    private static async Task<Collection<Commande>> ExtractCommandesFromReader(DbDataReader reader)
+    {
+        var commandes = new Collection<Commande>();
+        while (await reader.ReadAsync())
+        {
+            commandes.Add(new Commande(reader.GetInt32(0))
+            {
+                Date = reader.GetDateTime(1),
+                EstPayee = reader.GetInt32(2),
+                EstExpediee = reader.GetInt32(3),
+                Client = reader.GetInt32(4),
+            });
+        }
+        return commandes;
     }
 }
