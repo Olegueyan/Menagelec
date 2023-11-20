@@ -23,7 +23,9 @@ namespace Menagelec.Forms
 
         private void btnCommandeGestion_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Hide();
+            var commandManagerForm = new CommandManagerForm();
+            commandManagerForm.Show();
         }
     }
 }
