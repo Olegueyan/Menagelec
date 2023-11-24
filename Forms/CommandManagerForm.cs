@@ -1,6 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Menagelec.Component;
 using Menagelec.Entity;
 using Menagelec.Properties;
 using Menagelec.Repository;
@@ -64,7 +67,9 @@ namespace Menagelec.Forms
             {
                 checkBoxLSAPayer.Checked = false;
                 checkBoxLSAExpedier.Checked = false;
-                InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAll());
+                
+                var commandes = await CommandeRepository.ReadFiltered(GenerateFilters());
+                InsertCommandesIntoDataGridView(dataGridViewListeCommandes, commandes); 
                 numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
             }
             else
@@ -85,15 +90,14 @@ namespace Menagelec.Forms
             {
                 checkBoxLSTout.Checked = false;
                 checkBoxLSAExpedier.Checked = false;
-                InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAllEstPayee()); 
+                
+                var commandes = await CommandeRepository.ReadFiltered(GenerateFilters());
+                InsertCommandesIntoDataGridView(dataGridViewListeCommandes, commandes); 
                 numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
             }
             else
             {
-                if (!checkBoxLSAExpedier.Checked)
-                {
-                    checkBoxLSTout.Checked = true;
-                }
+                if (!checkBoxLSAExpedier.Checked) checkBoxLSTout.Checked = true;
             }
         }
 
@@ -108,7 +112,9 @@ namespace Menagelec.Forms
             {
                 checkBoxLSTout.Checked = false;
                 checkBoxLSAPayer.Checked = false;
-                InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAllEstExpediee()); 
+
+                var commandes = await CommandeRepository.ReadFiltered(GenerateFilters());
+                InsertCommandesIntoDataGridView(dataGridViewListeCommandes, commandes); 
                 numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
             }
             else
@@ -125,59 +131,148 @@ namespace Menagelec.Forms
 
         private async void dataGridViewListeCommandes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[2].Value.ToString(), out var idClient);
-            
-            // Link client entity to client info pane
-
-            var client = await ClientRepository.Read(idClient);
-            clientId.Text = client.IdClient.ToString();
-            clientCivilite.Text = client.Civilite;
-            clientNom.Text = client.Nom;
-            clientPrenom.Text = client.Prenom;
-            clientAdresse.Text = client.Adresse;
-            clientCp.Text = client.Cp;
-            clientVille.Text = client.Ville;
-            clientAdresseMail.Text = client.Mail;
-            clientTelephone.Text = client.Tel;
-            
-            int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[0].Value.ToString(), out var idCommande);
-            
-            // Link command entity to command info pane
-
-            var command = await CommandeRepository.Read(idCommande);
-            commandId.Text = command.Id.ToString();
-            commandDate.Text = command.Date.ToString("dd/MM/yyyy");
-
-            paiementImage.BackgroundImage = (command.EstPayee == 1) ? Resources.etatOk : Resources.etatNotOk;
-            expeditionImage.BackgroundImage = (command.EstExpediee == 1) ? Resources.etatOk : Resources.etatNotOk;
-            
-            // Link lignecommande entity to lignecommand info pane
-
-            var lignecommandes = await LigneCommandeRepository.ReadAllLigneCommandeWithAsync(idCommande);
-            refCommandNum.Text = lignecommandes.Count.ToString();
-            foreach (var lignecommande in lignecommandes)
+            try
             {
-                dataGridViewCommandRef.Rows.Add(lignecommande.Produit, lignecommande.Quantite);
+                int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[2].Value.ToString(), out var idClient);
+
+                // Link client entity to client info pane
+
+                var client = await ClientRepository.Read(idClient);
+                clientId.Text = client.IdClient.ToString();
+                clientCivilite.Text = client.Civilite;
+                clientNom.Text = client.Nom;
+                clientPrenom.Text = client.Prenom;
+                clientAdresse.Text = client.Adresse;
+                clientCp.Text = client.Cp;
+                clientVille.Text = client.Ville;
+                clientAdresseMail.Text = client.Mail;
+                clientTelephone.Text = client.Tel;
+                
+                int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[0].Value.ToString(), out var idCommande);
+            
+                // Link command entity to command info pane
+
+                var command = await CommandeRepository.Read(idCommande);
+                commandId.Text = command.Id.ToString();
+                commandDate.Text = command.Date.ToString("dd/MM/yyyy");
+
+                if (command.EstPayee == 1)
+                {
+                    paiementImage.BackgroundImage = Resources.etatOk;
+                    paiementOkBtn.Visible = false;
+                }
+                else
+                {
+                    paiementImage.BackgroundImage = Resources.etatNotOk;
+                    paiementOkBtn.Visible = true;
+                }
+
+                if (command.EstExpediee == 1)
+                {
+                    expeditionImage.BackgroundImage = Resources.etatOk;
+                    expeditionOkBtn.Visible = false;
+                }
+                else
+                {
+                    expeditionImage.BackgroundImage = Resources.etatNotOk;
+                    expeditionOkBtn.Visible = true;
+                }
+            
+                // Metadata
+
+                panelCommandInfo.Tag = command;
+            
+                // Link lignecommande entity to lignecommand info pane
+
+                var lignecommandes = await LigneCommandeRepository.ReadAllLigneCommandeWithAsync(idCommande);
+                refCommandNum.Text = lignecommandes.Count.ToString();
+                foreach (var lignecommande in lignecommandes)
+                {
+                    dataGridViewCommandRef.Rows.Add(lignecommande.Produit, lignecommande.Quantite);
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
             }
         }
 
         private async void checkBoxClientSearch_CheckedChanged(object sender, EventArgs e)
         {
-            int.TryParse(textBoxClientSearch.Text, out var idClient);
-            InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAllSearchedClient(idClient));
-            numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
-            checkBoxClientSearch.Checked = false;
-            textBoxClientSearch.Text = "";
+            if (!checkBoxClientSearch.Checked && checkBoxCommandSearch.Checked) return;
+            checkBoxCommandSearch.Checked = false;
+            await CommonDatabaseRequest();
         }
 
         private async void checkBoxCommandSearch_CheckedChanged(object sender, EventArgs e)
         {
-            int.TryParse(textBoxCommandSearch.Text, out var idCommande);
-            var uselessCollection = new Collection<Commande> { await CommandeRepository.Read(idCommande) };
-            InsertCommandesIntoDataGridView(dataGridViewListeCommandes, uselessCollection);
+            if (!checkBoxCommandSearch.Checked && checkBoxClientSearch.Checked) return;
+            checkBoxClientSearch.Checked = false;
+            await CommonDatabaseRequest();
+        }
+        
+        private async void paiementOkBtn_Click(object sender, EventArgs e)
+        {
+            paiementOkBtn.Visible = false;
+            var commande = (Commande) panelCommandInfo.Tag;
+            commande.EstPayee = 1;
+            await CommandeRepository.Update(commande);
+            paiementImage.BackgroundImage = Resources.etatOk;
+        }
+
+        private async void expeditionOkBtn_Click(object sender, EventArgs e)
+        {
+            expeditionOkBtn.Visible = false;
+            var commande = (Commande) panelCommandInfo.Tag;
+            commande.EstExpediee = 1;
+            await CommandeRepository.Update(commande);
+            expeditionImage.BackgroundImage = Resources.etatOk;
+        }
+
+        private FilterStruct[] GenerateFilters()
+        {
+            var filters = new Collection<FilterStruct>();
+
+            if (checkBoxLSAPayer.Checked)
+            {
+                filters.Add(CommandeRepository.EST_PAYEE.With(0));
+            }
+
+            if (checkBoxLSAExpedier.Checked)
+            {
+                filters.Add(CommandeRepository.EST_EXPEDIEE.With(0));
+            }
+
+            if (checkBoxClientSearch.Checked)
+            {
+                int.TryParse(textBoxClientSearch.Text, out var idClient);
+                filters.Add(CommandeRepository.CLIENT.With(idClient));
+            }
+            
+            if (checkBoxCommandSearch.Checked)
+            {
+                int.TryParse(textBoxCommandSearch.Text, out var idCommande);
+                filters.Add(CommandeRepository.COMMANDE.With(idCommande));
+            }
+
+            return filters.ToArray();
+        }
+
+        private async void textBoxClientSearch_Leave(object sender, EventArgs e)
+        {
+            // await CommonDatabaseRequest();
+        }
+        
+        private async void textBoxCommandSearch_Leave(object sender, EventArgs e)
+        {
+            // await CommonDatabaseRequest();
+        }
+
+        private async Task CommonDatabaseRequest()
+        {
+            var commandes = await CommandeRepository.ReadFiltered(GenerateFilters());
+            InsertCommandesIntoDataGridView(dataGridViewListeCommandes, commandes);
             numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
-            checkBoxCommandSearch.Checked = false;
-            textBoxCommandSearch.Text = "";
         }
     }
 }

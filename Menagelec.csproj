@@ -107,6 +107,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Component\FilterStruct.cs" />
         <Compile Include="Data\Constants.cs" />
         <Compile Include="Data\LoginType.cs" />
         <Compile Include="Data\MysqlParameters.cs" />
@@ -114,6 +115,7 @@
         <Compile Include="Entity\Commande.cs" />
         <Compile Include="Entity\LigneCommande.cs" />
         <Compile Include="Entity\Produit.cs" />
+        <Compile Include="Component\Filter.cs" />
         <Compile Include="FormLogin.cs">
             <SubType>Form</SubType>
         </Compile>

@@ -55,6 +55,8 @@ namespace Menagelec.Forms
             this.clientId = new System.Windows.Forms.Label();
             this.clientLabel = new System.Windows.Forms.Label();
             this.panelCommandInfo = new System.Windows.Forms.Panel();
+            this.expeditionOkBtn = new System.Windows.Forms.Button();
+            this.paiementOkBtn = new System.Windows.Forms.Button();
             this.expeditionImage = new System.Windows.Forms.PictureBox();
             this.paiementImage = new System.Windows.Forms.PictureBox();
             this.commandEstExpedieeLabel = new System.Windows.Forms.Label();
@@ -372,6 +374,8 @@ namespace Menagelec.Forms
             // panelCommandInfo
             // 
             this.panelCommandInfo.BackColor = System.Drawing.Color.White;
+            this.panelCommandInfo.Controls.Add(this.expeditionOkBtn);
+            this.panelCommandInfo.Controls.Add(this.paiementOkBtn);
             this.panelCommandInfo.Controls.Add(this.expeditionImage);
             this.panelCommandInfo.Controls.Add(this.paiementImage);
             this.panelCommandInfo.Controls.Add(this.commandEstExpedieeLabel);
@@ -384,6 +388,34 @@ namespace Menagelec.Forms
             this.panelCommandInfo.Name = "panelCommandInfo";
             this.panelCommandInfo.Size = new System.Drawing.Size(380, 111);
             this.panelCommandInfo.TabIndex = 11;
+            // 
+            // expeditionOkBtn
+            // 
+            this.expeditionOkBtn.AutoSize = true;
+            this.expeditionOkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expeditionOkBtn.ForeColor = System.Drawing.Color.Green;
+            this.expeditionOkBtn.Location = new System.Drawing.Point(165, 84);
+            this.expeditionOkBtn.Name = "expeditionOkBtn";
+            this.expeditionOkBtn.Size = new System.Drawing.Size(34, 23);
+            this.expeditionOkBtn.TabIndex = 20;
+            this.expeditionOkBtn.Text = "OK";
+            this.expeditionOkBtn.UseVisualStyleBackColor = true;
+            this.expeditionOkBtn.Visible = false;
+            this.expeditionOkBtn.Click += new System.EventHandler(this.expeditionOkBtn_Click);
+            // 
+            // paiementOkBtn
+            // 
+            this.paiementOkBtn.AutoSize = true;
+            this.paiementOkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paiementOkBtn.ForeColor = System.Drawing.Color.Green;
+            this.paiementOkBtn.Location = new System.Drawing.Point(165, 58);
+            this.paiementOkBtn.Name = "paiementOkBtn";
+            this.paiementOkBtn.Size = new System.Drawing.Size(34, 23);
+            this.paiementOkBtn.TabIndex = 19;
+            this.paiementOkBtn.Text = "OK";
+            this.paiementOkBtn.UseVisualStyleBackColor = true;
+            this.paiementOkBtn.Visible = false;
+            this.paiementOkBtn.Click += new System.EventHandler(this.paiementOkBtn_Click);
             // 
             // expeditionImage
             // 
@@ -438,7 +470,7 @@ namespace Menagelec.Forms
             this.commandDate.Location = new System.Drawing.Point(72, 28);
             this.commandDate.Name = "commandDate";
             this.commandDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.commandDate.Size = new System.Drawing.Size(40, 18);
+            this.commandDate.Size = new System.Drawing.Size(0, 18);
             this.commandDate.TabIndex = 14;
             // 
             // commandDateLabel
@@ -449,7 +481,7 @@ namespace Menagelec.Forms
             this.commandDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.commandDateLabel.Location = new System.Drawing.Point(6, 28);
             this.commandDateLabel.Name = "commandDateLabel";
-            this.commandDateLabel.Size = new System.Drawing.Size(0, 18);
+            this.commandDateLabel.Size = new System.Drawing.Size(40, 18);
             this.commandDateLabel.TabIndex = 13;
             this.commandDateLabel.Text = "date";
             // 
@@ -537,6 +569,7 @@ namespace Menagelec.Forms
             this.textBoxClientSearch.Name = "textBoxClientSearch";
             this.textBoxClientSearch.Size = new System.Drawing.Size(266, 23);
             this.textBoxClientSearch.TabIndex = 16;
+            this.textBoxClientSearch.Leave += new System.EventHandler(this.textBoxClientSearch_Leave);
             // 
             // labelSearchClient
             // 
@@ -579,6 +612,7 @@ namespace Menagelec.Forms
             this.textBoxCommandSearch.Name = "textBoxCommandSearch";
             this.textBoxCommandSearch.Size = new System.Drawing.Size(266, 23);
             this.textBoxCommandSearch.TabIndex = 20;
+            this.textBoxCommandSearch.Leave += new System.EventHandler(this.textBoxCommandSearch_Leave);
             // 
             // checkBoxCommandSearch
             // 
@@ -636,6 +670,10 @@ namespace Menagelec.Forms
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button paiementOkBtn;
+
+        private System.Windows.Forms.Button expeditionOkBtn;
 
         private System.Windows.Forms.TextBox textBoxCommandSearch;
         
