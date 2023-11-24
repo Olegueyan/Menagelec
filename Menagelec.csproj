@@ -107,6 +107,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Component\FilterStruct.cs" />
         <Compile Include="Data\Constants.cs" />
         <Compile Include="Data\LoginType.cs" />
         <Compile Include="Data\MysqlParameters.cs" />
@@ -114,12 +115,15 @@
         <Compile Include="Entity\Commande.cs" />
         <Compile Include="Entity\LigneCommande.cs" />
         <Compile Include="Entity\Produit.cs" />
+        <Compile Include="Component\Filter.cs" />
         <Compile Include="FormLogin.cs">
             <SubType>Form</SubType>
         </Compile>
         <Compile Include="FormLogin.Designer.cs">
             <DependentUpon>FormLogin.cs</DependentUpon>
         </Compile>
+        <Compile Include="Forms\CommandManagerForm.cs" />
+        <Compile Include="Forms\CommandManagerForm.Designer.cs" />
         <Compile Include="Forms\MenuForm.cs" />
         <Compile Include="Forms\MenuForm.Designer.cs" />
         <Compile Include="Program.cs" />
@@ -129,9 +133,11 @@
         <Compile Include="Repository\LigneCommandeRepository.cs" />
         <Compile Include="Repository\ProduitRepository.cs" />
         <Compile Include="Service\DatabaseService.cs" />
+        <Compile Include="Service\ResourceService.cs" />
         <EmbeddedResource Include="FormLogin.resx">
           <DependentUpon>FormLogin.cs</DependentUpon>
         </EmbeddedResource>
+        <EmbeddedResource Include="Forms\CommandManagerForm.resx" />
         <EmbeddedResource Include="Forms\MenuForm.resx" />
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
@@ -483,7 +489,10 @@
       <Content Include="external\PPE2_MENAGELEC_client-lourd_v1_sans_com.pdf" />
       <Content Include="menagelec.puml" />
       <Content Include="Resources\commande_impayee.png" />
+      <Content Include="Resources\etatNotOk.png" />
+      <Content Include="Resources\etatOk.png" />
       <Content Include="Resources\logo_menagelec.png" />
+      <Content Include="Resources\_1394462228_Silver_button.png" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Export\" />

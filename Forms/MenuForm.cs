@@ -5,25 +5,28 @@ namespace Menagelec.Forms
 {
     public partial class MenuForm : Form
     {
+        public static MenuForm Instance = new();
+        
         public MenuForm()
         {
             InitializeComponent();
             
-            // Event registering
-            
-            btnCommandeGestion.Click += btnCommandeGestion_Click;
-            
             // Form Closing Event
             
-            FormClosing += (_, _) =>
+            FormClosing += (sender, args) =>
             {
                 Application.Exit();
             };
+            
+            // Event registering
+            
+            btnCommandeGestion.Click += btnCommandeGestion_Click;
         }
 
         private void btnCommandeGestion_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Hide();
+            CommandManagerForm.Instance.Show();
         }
     }
 }

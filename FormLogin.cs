@@ -15,6 +15,20 @@ namespace Menagelec
             // Event registering
             
             buttonConnect.Click += buttonConnect_Click;
+            
+            // Keyboard handling
+
+            KeyPreview = true;
+            AcceptButton = null;
+            
+            KeyDown += (sender, args) =>
+            {
+                if (args.KeyCode == Keys.Enter)
+                {
+                    args.SuppressKeyPress = true;
+                    buttonConnect.PerformClick();
+                };
+            };
         }
         
         private void buttonConnect_Click(object sender, EventArgs e)
@@ -35,6 +49,7 @@ namespace Menagelec
             {
                 textBoxUser.Text = "";
                 textBoxPassword.Text = "";
+                MessageBox.Show(@"Invalid login !");
             }
         }
     }
