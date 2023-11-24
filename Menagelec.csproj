@@ -133,6 +133,7 @@
         <Compile Include="Repository\LigneCommandeRepository.cs" />
         <Compile Include="Repository\ProduitRepository.cs" />
         <Compile Include="Service\DatabaseService.cs" />
+        <Compile Include="Service\ResourceService.cs" />
         <EmbeddedResource Include="FormLogin.resx">
           <DependentUpon>FormLogin.cs</DependentUpon>
         </EmbeddedResource>
