@@ -547,6 +547,7 @@ namespace Menagelec.Forms
             this.dataGridViewCommandRef.Size = new System.Drawing.Size(380, 166);
             this.dataGridViewCommandRef.TabIndex = 14;
             this.dataGridViewCommandRef.TabStop = false;
+            this.dataGridViewCommandRef.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewCommandRef_CellMouseClick);
             // 
             // specificSearchLabel
             // 

@@ -274,5 +274,19 @@ namespace Menagelec.Forms
             InsertCommandesIntoDataGridView(dataGridViewListeCommandes, commandes);
             numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
         }
+
+        private async void dataGridViewCommandRef_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                int.TryParse(dataGridViewCommandRef.Rows[e.RowIndex].Cells[0].Value.ToString(), out var idProduit);
+                var product = await ProduitRepository.Read(idProduit);
+                new ProductForm(product).Show();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
     }
 }
