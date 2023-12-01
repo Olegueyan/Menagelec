@@ -316,7 +316,7 @@ namespace Menagelec.Forms
                 Console.WriteLine(exception);
             }
         }
-        
+
         private async void buttonListeColisage_Click(object sender, EventArgs e)
         {
             var ligneCommandes = (Collection<LigneCommande>) dataGridViewCommandRef.Tag;
