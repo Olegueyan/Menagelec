@@ -8,7 +8,7 @@ namespace Menagelec.Entity
         private DateTime _date;
         private int _estPayee;
         private int _estExpediee;
-        private Client _client;
+        private int _client;
 
         public Commande(int? id)
         {
@@ -40,7 +40,7 @@ namespace Menagelec.Entity
             set => _estExpediee = value;
         }
 
-        public Client Client
+        public int Client
         {
             get => _client;
             set => _client = value;

@@ -16,68 +16,72 @@ public static class ProduitRepository
     
     public static async Task<int> Create(Produit produit)
     {
-        return await DatabaseService.OpenAndExecute(async connection =>
-        {
-            var command = new MySqlCommand(QueryInsertion, connection);
-            command.Parameters.Add(new MySqlParameter("@designation", produit.Designation));
-            command.Parameters.Add(new MySqlParameter("@description", produit.Description));
-            command.Parameters.Add(new MySqlParameter("@dateAjout", produit.DateAjout));
-            command.Parameters.Add(new MySqlParameter("@qte", produit.Qte));
-            command.Parameters.Add(new MySqlParameter("@prix", produit.Prix));
-            command.Parameters.Add(new MySqlParameter("@fichierImage", produit.FichierImage));
-            command.Parameters.Add(new MySqlParameter("@pk_fournisseur", produit.PkFournisseur));
-            return await command.ExecuteNonQueryAsync();
-        });
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QueryInsertion, connection);
+        command.Parameters.Add(new MySqlParameter("@designation", produit.Designation));
+        command.Parameters.Add(new MySqlParameter("@description", produit.Description));
+        command.Parameters.Add(new MySqlParameter("@dateAjout", produit.DateAjout));
+        command.Parameters.Add(new MySqlParameter("@qte", produit.Qte));
+        command.Parameters.Add(new MySqlParameter("@prix", produit.Prix));
+        command.Parameters.Add(new MySqlParameter("@fichierImage", produit.FichierImage));
+        command.Parameters.Add(new MySqlParameter("@pk_fournisseur", produit.PkFournisseur));
+        var result = await command.ExecuteNonQueryAsync();
+        await connection.CloseAsync();
+        return result;
     }
     
     public static async Task<Produit> Read(int idProduit)
     {
-        return await DatabaseService.OpenAndExecute(async connection =>
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QuerySelect, connection);
+        command.Parameters.Add(new MySqlParameter("@idProduit", idProduit));
+        var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
         {
-            var command = new MySqlCommand(QuerySelect, connection);
-            command.Parameters.Add(new MySqlParameter("@idProduit", idProduit));
-            var reader = await command.ExecuteReaderAsync();
-            while (await reader.ReadAsync())
+            var produit = new Produit(reader.GetInt32(0))
             {
-                return new Produit(reader.GetInt32(0))
-                {
-                    Designation = reader.GetString(1),
-                    Description = reader.GetString(2),
-                    DateAjout = reader.GetDateTime(3),
-                    Qte = reader.GetInt32(4),
-                    Prix = reader.GetDouble(5),
-                    FichierImage = reader.GetString(6),
-                    PkFournisseur = reader.GetInt32(7),
-                };
-            }
-            return default;
-        });
+                Designation = reader.GetString(1),
+                Description = reader.GetString(2),
+                DateAjout = reader.GetDateTime(3),
+                Qte = reader.GetInt32(4),
+                Prix = reader.GetDouble(5),
+                FichierImage = reader.GetString(6),
+                PkFournisseur = reader.GetInt32(7),
+            };
+            await connection.CloseAsync();
+            return produit;
+        }
+        return default;
     }
 
     public static async Task<int> Update(Produit produit)
     {
-        return await DatabaseService.OpenAndExecute(async connection =>
-        {
-            var command = new MySqlCommand(QueryUpdate, connection);
-            command.Parameters.Add(new MySqlParameter("@designation", produit.Designation));
-            command.Parameters.Add(new MySqlParameter("@description", produit.Description));
-            command.Parameters.Add(new MySqlParameter("@dateAjout", produit.DateAjout));
-            command.Parameters.Add(new MySqlParameter("@qte", produit.Qte));
-            command.Parameters.Add(new MySqlParameter("@prix", produit.Prix));
-            command.Parameters.Add(new MySqlParameter("@fichierImage", produit.FichierImage));
-            command.Parameters.Add(new MySqlParameter("@pk_fournisseur", produit.PkFournisseur));
-            command.Parameters.Add(new MySqlParameter("@idProduit", produit.IdProduit));
-            return await command.ExecuteNonQueryAsync();
-        });
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QueryUpdate, connection);
+        command.Parameters.Add(new MySqlParameter("@designation", produit.Designation));
+        command.Parameters.Add(new MySqlParameter("@description", produit.Description));
+        command.Parameters.Add(new MySqlParameter("@dateAjout", produit.DateAjout));
+        command.Parameters.Add(new MySqlParameter("@qte", produit.Qte));
+        command.Parameters.Add(new MySqlParameter("@prix", produit.Prix));
+        command.Parameters.Add(new MySqlParameter("@fichierImage", produit.FichierImage));
+        command.Parameters.Add(new MySqlParameter("@pk_fournisseur", produit.PkFournisseur));
+        command.Parameters.Add(new MySqlParameter("@idProduit", produit.IdProduit));
+        var result = await command.ExecuteNonQueryAsync();
+        await connection.CloseAsync();
+        return result;
     }
 
     public static async Task<int> Delete(int idProduit)
     {
-        return await DatabaseService.OpenAndExecute(async connection =>
-        {
-            var command = new MySqlCommand(QueryDelete, connection);
-            command.Parameters.Add(new MySqlParameter("@idProduit", idProduit));
-            return await command.ExecuteNonQueryAsync();
-        });
+        var connection = DatabaseService.GetConnection();
+        await connection.OpenAsync();
+        var command = new MySqlCommand(QueryDelete, connection);
+        command.Parameters.Add(new MySqlParameter("@idProduit", idProduit));
+        var result = await command.ExecuteNonQueryAsync();
+        await connection.CloseAsync();
+        return result;
     }
 }

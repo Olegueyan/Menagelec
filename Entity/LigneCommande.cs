@@ -4,17 +4,17 @@ namespace Menagelec.Entity
 {
     public class LigneCommande
     {
-        private Produit _produit;
-        private Commande _commande;
+        private int _produit;
+        private int _commande;
         private int _quantite;
         
-        public Produit Produit
+        public int Produit
         {
             get => _produit;
             set => _produit = value;
         }
         
-        public Commande Commande
+        public int Commande
         {
             get => _commande;
             set => _commande = value;
