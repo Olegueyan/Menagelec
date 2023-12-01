@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Threading.Tasks;
@@ -27,89 +26,83 @@ public static class CommandeRepository
     
     public static async Task<int> Create(Commande commande)
     {
-        var connection = DatabaseService.GetConnection();
-        await connection.OpenAsync();
-        var command = new MySqlCommand(QueryInsertion, connection);
-        command.Parameters.Add(new MySqlParameter("@date", commande.Date));
-        command.Parameters.Add(new MySqlParameter("@estPayee", commande.EstPayee));
-        command.Parameters.Add(new MySqlParameter("@estExpediee", commande.EstExpediee));
-        command.Parameters.Add(new MySqlParameter("@client", commande.Client));
-        var result = await command.ExecuteNonQueryAsync();
-        await connection.CloseAsync();
-        return result;
+        return await DatabaseService.OpenAndExecute(async connection =>
+        {
+            var command = new MySqlCommand(QueryInsertion, connection);
+            command.Parameters.Add(new MySqlParameter("@date", commande.Date));
+            command.Parameters.Add(new MySqlParameter("@estPayee", commande.EstPayee));
+            command.Parameters.Add(new MySqlParameter("@estExpediee", commande.EstExpediee));
+            command.Parameters.Add(new MySqlParameter("@client", commande.Client));
+            return await command.ExecuteNonQueryAsync();
+        });
     }
     
     public static async Task<Commande> Read(int idCommande)
     {
-        var connection = DatabaseService.GetConnection();
-        await connection.OpenAsync();
-        var command = new MySqlCommand(QuerySelect, connection);
-        command.Parameters.Add(new MySqlParameter("@id", idCommande));
-        var reader = await command.ExecuteReaderAsync();
-        while (await reader.ReadAsync())
+        return await DatabaseService.OpenAndExecute(async connection =>
         {
-            var commande = new Commande(reader.GetInt32(0))
+            var command = new MySqlCommand(QuerySelect, connection);
+            command.Parameters.Add(new MySqlParameter("@id", idCommande));
+            var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
             {
-                Date = reader.GetDateTime(1),
-                EstPayee = reader.GetInt32(2),
-                EstExpediee = reader.GetInt32(3),
-                Client = reader.GetInt32(4),
-            };
-            await connection.CloseAsync();
-            return commande;
-        }
-        return default;
+                return new Commande(reader.GetInt32(0))
+                {
+                    Date = reader.GetDateTime(1),
+                    EstPayee = reader.GetInt32(2),
+                    EstExpediee = reader.GetInt32(3),
+                    Client = await ClientRepository.Read(reader.GetInt32(4)),
+                };
+            }
+            return default;
+        });
     }
 
     public static async Task<int> Update(Commande commande)
     {
-        var connection = DatabaseService.GetConnection();
-        await connection.OpenAsync();
-        var command = new MySqlCommand(QueryUpdate, connection);
-        command.Parameters.Add(new MySqlParameter("@date", commande.Date));
-        command.Parameters.Add(new MySqlParameter("estPayee", commande.EstPayee));
-        command.Parameters.Add(new MySqlParameter("@estExpediee", commande.EstExpediee));
-        command.Parameters.Add(new MySqlParameter("@client", commande.Client));
-        command.Parameters.Add(new MySqlParameter("@id", commande.Id));
-        var result = await command.ExecuteNonQueryAsync();
-        await connection.CloseAsync();
-        return result;
+        return await DatabaseService.OpenAndExecute(async connection =>
+        {
+            var command = new MySqlCommand(QueryUpdate, connection);
+            command.Parameters.Add(new MySqlParameter("@date", commande.Date));
+            command.Parameters.Add(new MySqlParameter("estPayee", commande.EstPayee));
+            command.Parameters.Add(new MySqlParameter("@estExpediee", commande.EstExpediee));
+            command.Parameters.Add(new MySqlParameter("@client", commande.Client));
+            command.Parameters.Add(new MySqlParameter("@id", commande.Id));
+            return await command.ExecuteNonQueryAsync();
+        });
     }
 
     public static async Task<int> Delete(int idCommande)
     {
-        var connection = DatabaseService.GetConnection();
-        await connection.OpenAsync();
-        var command = new MySqlCommand(QueryDelete, connection);
-        command.Parameters.Add(new MySqlParameter("@id", idCommande));
-        var result = await command.ExecuteNonQueryAsync();
-        await connection.CloseAsync();
-        return result;
+        return await DatabaseService.OpenAndExecute(async connection =>
+        {
+            var command = new MySqlCommand(QueryDelete, connection);
+            command.Parameters.Add(new MySqlParameter("@id", idCommande));
+            return await command.ExecuteNonQueryAsync();
+        });
     }
     
     public static async Task<Collection<Commande>> ReadAll()
     {
-        var connection = DatabaseService.GetConnection();
-        await connection.OpenAsync();
-        var command = new MySqlCommand(QuerySelectAll, connection);
-        var reader = await command.ExecuteReaderAsync();
-        var commandes = await ExtractCommandesFromReader(reader);
-        await connection.CloseAsync();
-        return commandes;
+        return await DatabaseService.OpenAndExecute(async connection =>
+        {
+            var command = new MySqlCommand(QuerySelectAll, connection);
+            var reader = await command.ExecuteReaderAsync();
+            return await ExtractCommandesFromReader(reader);
+        });
     }
     
     public static async Task<Collection<Commande>> ReadFiltered(params FilterStruct[] filters)
     {
-        var connection = DatabaseService.GetConnection();
-        await connection.OpenAsync();
-        var query = QuerySelectAll;
-        var whereClause = FilterStruct.WhereClause(filters);
-        if (whereClause.Length > 0) query = $"{query} WHERE {whereClause}";
-        var command = new MySqlCommand(query, connection);
-        var reader = await command.ExecuteReaderAsync();
-        var commandes = await ExtractCommandesFromReader(reader);
-        await connection.CloseAsync();
-        return commandes;
+        return await DatabaseService.OpenAndExecute(async connection =>
+        {
+            var query = QuerySelectAll;
+            var whereClause = FilterStruct.WhereClause(filters);
+            if (whereClause.Length > 0) query = $"{query} WHERE {whereClause}";
+            var command = new MySqlCommand(query, connection);
+            var reader = await command.ExecuteReaderAsync();
+            return await ExtractCommandesFromReader(reader);
+        });
     }
 
     private static async Task<Collection<Commande>> ExtractCommandesFromReader(DbDataReader reader)
@@ -122,7 +115,7 @@ public static class CommandeRepository
                 Date = reader.GetDateTime(1),
                 EstPayee = reader.GetInt32(2),
                 EstExpediee = reader.GetInt32(3),
-                Client = reader.GetInt32(4),
+                Client = await ClientRepository.Read(reader.GetInt32(4)),
             });
         }
         return commandes;
