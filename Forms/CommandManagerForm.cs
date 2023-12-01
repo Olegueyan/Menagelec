@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,16 @@ namespace Menagelec.Forms
 
             Load += async (sender, args) =>
             {
+                dataGridViewListeCommandes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(223, 80, 0);
+
+                dataGridViewListeCommandes.AllowUserToResizeColumns = false;
+                dataGridViewListeCommandes.AllowUserToResizeRows = false;
+                
+                dataGridViewCommandRef.DefaultCellStyle.SelectionBackColor = Color.FromArgb(223, 80, 0);
+                
+                dataGridViewCommandRef.AllowUserToResizeColumns = false;
+                dataGridViewCommandRef.AllowUserToResizeRows = false;
+                
                 // Initialize DataGridViews
                 
                 dataGridViewListeCommandes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -39,9 +50,17 @@ namespace Menagelec.Forms
                 
                 dataGridViewCommandRef.Columns.Add("Produit commandé", "Produit commandé");
                 dataGridViewCommandRef.Columns.Add("Quantité", "Quantité");
+
+                dataGridViewListeCommandes.MultiSelect = false;
                 
                 InsertCommandesIntoDataGridView(dataGridViewListeCommandes, await CommandeRepository.ReadAll());
                 numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
+                
+                dataGridViewListeCommandes.ClearSelection();
+                dataGridViewListeCommandes.CurrentCell = dataGridViewListeCommandes.FirstDisplayedCell;
+                dataGridViewListeCommandes.CurrentCell.Selected = true;
+
+                await SelectCommandAndDisplay(dataGridViewListeCommandes, 0, 2, 0);
             };
         }
         
@@ -131,9 +150,14 @@ namespace Menagelec.Forms
 
         private async void dataGridViewListeCommandes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            await SelectCommandAndDisplay(dataGridViewListeCommandes, e.RowIndex, 2, 0);
+        }
+
+        private async Task SelectCommandAndDisplay(DataGridView of, int idRow, int cellIndexIdClient, int cellIndexIdCommand)
+        {
             try
             {
-                int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[2].Value.ToString(), out var idClient);
+                int.TryParse(of.Rows[idRow].Cells[cellIndexIdClient].Value.ToString(), out var idClient);
 
                 // Link client entity to client info pane
 
@@ -148,7 +172,7 @@ namespace Menagelec.Forms
                 clientAdresseMail.Text = client.Mail;
                 clientTelephone.Text = client.Tel;
                 
-                int.TryParse(dataGridViewListeCommandes.Rows[e.RowIndex].Cells[0].Value.ToString(), out var idCommande);
+                int.TryParse(of.Rows[idRow].Cells[cellIndexIdCommand].Value.ToString(), out var idCommande);
             
                 // Link command entity to command info pane
 
@@ -183,6 +207,8 @@ namespace Menagelec.Forms
                 panelCommandInfo.Tag = command;
             
                 // Link lignecommande entity to lignecommand info pane
+                
+                dataGridViewCommandRef.Rows.Clear();
 
                 var lignecommandes = await LigneCommandeRepository.ReadAllLigneCommandeWithAsync(idCommande);
                 refCommandNum.Text = lignecommandes.Count.ToString();
@@ -190,6 +216,8 @@ namespace Menagelec.Forms
                 {
                     dataGridViewCommandRef.Rows.Add(lignecommande.Produit, lignecommande.Quantite);
                 }
+                
+                dataGridViewCommandRef.Tag = lignecommandes;
             }
             catch (Exception exception)
             {
@@ -273,6 +301,27 @@ namespace Menagelec.Forms
             var commandes = await CommandeRepository.ReadFiltered(GenerateFilters());
             InsertCommandesIntoDataGridView(dataGridViewListeCommandes, commandes);
             numCommandesValue.Text = dataGridViewListeCommandes.Rows.Count.ToString();
+        }
+
+        private async void dataGridViewCommandRef_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                int.TryParse(dataGridViewCommandRef.Rows[e.RowIndex].Cells[0].Value.ToString(), out var idProduit);
+                var product = await ProduitRepository.Read(idProduit);
+                new ProductForm(product).Show();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
+        
+        private async void buttonListeColisage_Click(object sender, EventArgs e)
+        {
+            var ligneCommandes = (Collection<LigneCommande>) dataGridViewCommandRef.Tag;
+            var commande = (Commande) panelCommandInfo.Tag;
+            await PdfPackagingListGenerator.GeneratePdfPackagingListOf(commande, ligneCommandes);
         }
     }
 }

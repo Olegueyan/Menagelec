@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using Menagelec.Data;
+using Menagelec.Forms;
 using Menagelec.Service;
+using QuestPDF.Infrastructure;
 
 namespace Menagelec
 {
@@ -13,6 +15,8 @@ namespace Menagelec
         [STAThread]
         static void Main()
         {
+            QuestPDF.Settings.License = LicenseType.Community;
+            
             DatabaseService.InitializeService(new MysqlParameters
             {
                 Host = "localhost",
@@ -24,7 +28,7 @@ namespace Menagelec
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            Application.Run(new CommandManagerForm());
         }
     }
 }

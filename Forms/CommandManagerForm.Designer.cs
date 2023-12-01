@@ -32,6 +32,7 @@ namespace Menagelec.Forms
         private void InitializeComponent()
         {
             System.Windows.Forms.Button returnToMenuBtn;
+            System.Windows.Forms.Button buttonListeColisage;
             this.titleForm = new System.Windows.Forms.Label();
             this.labelListeCommandes = new System.Windows.Forms.Label();
             this.dataGridViewListeCommandes = new System.Windows.Forms.DataGridView();
@@ -75,13 +76,17 @@ namespace Menagelec.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCommandSearch = new System.Windows.Forms.TextBox();
             this.checkBoxCommandSearch = new System.Windows.Forms.CheckBox();
+            this.labelDocuments = new System.Windows.Forms.Label();
+            this.panelDocuments = new System.Windows.Forms.Panel();
             returnToMenuBtn = new System.Windows.Forms.Button();
+            buttonListeColisage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).BeginInit();
             this.paneClientInfo.SuspendLayout();
             this.panelCommandInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandRef)).BeginInit();
+            this.panelDocuments.SuspendLayout();
             this.SuspendLayout();
             // 
             // returnToMenuBtn
@@ -94,6 +99,18 @@ namespace Menagelec.Forms
             returnToMenuBtn.Text = "Retour au \r\nmenu";
             returnToMenuBtn.UseVisualStyleBackColor = true;
             returnToMenuBtn.Click += new System.EventHandler(this.returnToMenuBtn_Click);
+            // 
+            // buttonListeColisage
+            // 
+            buttonListeColisage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            buttonListeColisage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            buttonListeColisage.Location = new System.Drawing.Point(78, 91);
+            buttonListeColisage.Name = "buttonListeColisage";
+            buttonListeColisage.Size = new System.Drawing.Size(162, 49);
+            buttonListeColisage.TabIndex = 23;
+            buttonListeColisage.Text = "Liste de colisage";
+            buttonListeColisage.UseVisualStyleBackColor = true;
+            buttonListeColisage.Click += new System.EventHandler(this.buttonListeColisage_Click);
             // 
             // titleForm
             // 
@@ -547,6 +564,7 @@ namespace Menagelec.Forms
             this.dataGridViewCommandRef.Size = new System.Drawing.Size(380, 166);
             this.dataGridViewCommandRef.TabIndex = 14;
             this.dataGridViewCommandRef.TabStop = false;
+            this.dataGridViewCommandRef.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewCommandRef_CellMouseClick);
             // 
             // specificSearchLabel
             // 
@@ -626,12 +644,37 @@ namespace Menagelec.Forms
             this.checkBoxCommandSearch.UseVisualStyleBackColor = true;
             this.checkBoxCommandSearch.CheckedChanged += new System.EventHandler(this.checkBoxCommandSearch_CheckedChanged);
             // 
+            // labelDocuments
+            // 
+            this.labelDocuments.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelDocuments.AutoSize = true;
+            this.labelDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDocuments.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDocuments.ForeColor = System.Drawing.Color.White;
+            this.labelDocuments.Location = new System.Drawing.Point(104, 21);
+            this.labelDocuments.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.labelDocuments.Name = "labelDocuments";
+            this.labelDocuments.Size = new System.Drawing.Size(111, 25);
+            this.labelDocuments.TabIndex = 22;
+            this.labelDocuments.Text = "Documents";
+            this.labelDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelDocuments
+            // 
+            this.panelDocuments.Controls.Add(this.labelDocuments);
+            this.panelDocuments.Controls.Add(buttonListeColisage);
+            this.panelDocuments.Location = new System.Drawing.Point(916, 373);
+            this.panelDocuments.Name = "panelDocuments";
+            this.panelDocuments.Size = new System.Drawing.Size(318, 260);
+            this.panelDocuments.TabIndex = 24;
+            // 
             // CommandManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1262, 721);
+            this.Controls.Add(this.panelDocuments);
             this.Controls.Add(this.checkBoxCommandSearch);
             this.Controls.Add(this.textBoxCommandSearch);
             this.Controls.Add(this.label1);
@@ -659,6 +702,7 @@ namespace Menagelec.Forms
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CommandManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Gestion des commandes";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListeCommandes)).EndInit();
             this.paneClientInfo.ResumeLayout(false);
             this.paneClientInfo.PerformLayout();
@@ -667,9 +711,15 @@ namespace Menagelec.Forms
             ((System.ComponentModel.ISupportInitialize)(this.expeditionImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paiementImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandRef)).EndInit();
+            this.panelDocuments.ResumeLayout(false);
+            this.panelDocuments.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Panel panelDocuments;
+
+        private System.Windows.Forms.Label labelDocuments;
 
         private System.Windows.Forms.Button paiementOkBtn;
 
