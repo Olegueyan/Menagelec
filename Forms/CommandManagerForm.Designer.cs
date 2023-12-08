@@ -73,7 +73,7 @@ namespace Menagelec.Forms
             this.textBoxClientSearch = new System.Windows.Forms.TextBox();
             this.labelSearchClient = new System.Windows.Forms.Label();
             this.checkBoxClientSearch = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelSearchCommand = new System.Windows.Forms.Label();
             this.textBoxCommandSearch = new System.Windows.Forms.TextBox();
             this.checkBoxCommandSearch = new System.Windows.Forms.CheckBox();
             this.labelDocuments = new System.Windows.Forms.Label();
@@ -612,16 +612,16 @@ namespace Menagelec.Forms
             this.checkBoxClientSearch.UseVisualStyleBackColor = true;
             this.checkBoxClientSearch.CheckedChanged += new System.EventHandler(this.checkBoxClientSearch_CheckedChanged);
             // 
-            // label1
+            // labelSearchCommand
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(916, 264);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 20);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Rechercher une commande";
+            this.labelSearchCommand.AutoSize = true;
+            this.labelSearchCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSearchCommand.ForeColor = System.Drawing.Color.White;
+            this.labelSearchCommand.Location = new System.Drawing.Point(916, 264);
+            this.labelSearchCommand.Name = "labelSearchCommand";
+            this.labelSearchCommand.Size = new System.Drawing.Size(215, 20);
+            this.labelSearchCommand.TabIndex = 19;
+            this.labelSearchCommand.Text = "Rechercher une commande";
             // 
             // textBoxCommandSearch
             // 
@@ -677,7 +677,7 @@ namespace Menagelec.Forms
             this.Controls.Add(this.panelDocuments);
             this.Controls.Add(this.checkBoxCommandSearch);
             this.Controls.Add(this.textBoxCommandSearch);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelSearchCommand);
             this.Controls.Add(this.checkBoxClientSearch);
             this.Controls.Add(this.labelSearchClient);
             this.Controls.Add(this.textBoxClientSearch);
@@ -729,7 +729,7 @@ namespace Menagelec.Forms
         
         private System.Windows.Forms.CheckBox checkBoxCommandSearch;
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelSearchCommand;
 
         private System.Windows.Forms.CheckBox checkBoxClientSearch;
 

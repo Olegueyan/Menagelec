@@ -173,7 +173,11 @@ namespace Menagelec.Forms
                 clientTelephone.Text = client.Tel;
                 
                 int.TryParse(of.Rows[idRow].Cells[cellIndexIdCommand].Value.ToString(), out var idCommande);
-            
+                
+                // Metadata
+
+                paneClientInfo.Tag = client;
+                
                 // Link command entity to command info pane
 
                 var command = await CommandeRepository.Read(idCommande);
