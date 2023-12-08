@@ -4,12 +4,12 @@ public static class Constants
 {
     public static LoginType[] PossibleLogin =
     {
-        new LoginType
+        new()
         {
             Login = "fournier",
             Password = "1234"
         },
-        new LoginType
+        new()
         {
             Login = "hurier",
             Password = "5678"

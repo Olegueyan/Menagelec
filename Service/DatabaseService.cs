@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Menagelec.Data;
 using MySql.Data.MySqlClient;
 
