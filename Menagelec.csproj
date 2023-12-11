@@ -122,6 +122,7 @@
         <Compile Include="Component\FilterStruct.cs" />
         <Compile Include="Component\PdfPackagingListGenerator.cs" />
         <Compile Include="Data\Constants.cs" />
+        <Compile Include="Data\DisplayType.cs" />
         <Compile Include="Data\LoginType.cs" />
         <Compile Include="Data\MysqlParameters.cs" />
         <Compile Include="Data\PdfPackagingListRowStruct.cs" />
@@ -184,6 +185,7 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Export\trigger_capture_stats_number_command_to_ship.sql" />
       <Content Include="external\bdd\menageleccsharp.sql" />
       <Content Include="external\imagesInterfaceGraphique\1394399282_system-search.png" />
       <Content Include="external\imagesInterfaceGraphique\1394462228_Silver_button.png" />
@@ -514,9 +516,6 @@
       <Content Include="Resources\etatOk.png" />
       <Content Include="Resources\logo_menagelec.png" />
       <Content Include="Resources\_1394462228_Silver_button.png" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Export\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Menagelec.Component;
+using Menagelec.Data;
 using Menagelec.Entity;
 using Menagelec.Properties;
 using Menagelec.Repository;
+using QuestPDF.Fluent;
 
 namespace Menagelec.Forms
 {
@@ -60,7 +62,7 @@ namespace Menagelec.Forms
                 dataGridViewListeCommandes.CurrentCell = dataGridViewListeCommandes.FirstDisplayedCell;
                 dataGridViewListeCommandes.CurrentCell.Selected = true;
 
-                await SelectCommandAndDisplay(dataGridViewListeCommandes, 0, 2, 0);
+                await SelectCommandAndDisplay(dataGridViewListeCommandes, 0, 2, 0, DisplayType.STANDARD);
             };
         }
         
@@ -150,10 +152,23 @@ namespace Menagelec.Forms
 
         private async void dataGridViewListeCommandes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            await SelectCommandAndDisplay(dataGridViewListeCommandes, e.RowIndex, 2, 0);
+            var specificSearch = DisplayType.STANDARD;
+
+            if (checkBoxClientSearch.Checked)
+            {
+                specificSearch = DisplayType.SPECIFIC_CLIENT;
+            }
+
+            if (checkBoxCommandSearch.Checked)
+            {
+                specificSearch = DisplayType.SPECIFIC_COMMAND;
+            }
+            
+            await SelectCommandAndDisplay(dataGridViewListeCommandes, e.RowIndex, 2, 0, specificSearch);
         }
 
-        private async Task SelectCommandAndDisplay(DataGridView of, int idRow, int cellIndexIdClient, int cellIndexIdCommand)
+        private async Task SelectCommandAndDisplay(DataGridView of, int idRow, int cellIndexIdClient,
+            int cellIndexIdCommand, DisplayType specificSearch)
         {
             try
             {
@@ -171,13 +186,20 @@ namespace Menagelec.Forms
                 clientVille.Text = client.Ville;
                 clientAdresseMail.Text = client.Mail;
                 clientTelephone.Text = client.Tel;
+
+                clientSpecificSearch.Visible = (specificSearch == DisplayType.SPECIFIC_CLIENT);
                 
+                foreach (var control in paneClientInfo.Controls.OfType<Label>())
+                {
+                    control.ForeColor = specificSearch == DisplayType.SPECIFIC_CLIENT ? Constants.DisplaySearchSpecificColor : Constants.DisplayStandardColor;
+                }
+
                 int.TryParse(of.Rows[idRow].Cells[cellIndexIdCommand].Value.ToString(), out var idCommande);
-                
+
                 // Metadata
 
                 paneClientInfo.Tag = client;
-                
+
                 // Link command entity to command info pane
 
                 var command = await CommandeRepository.Read(idCommande);
@@ -205,13 +227,20 @@ namespace Menagelec.Forms
                     expeditionImage.BackgroundImage = Resources.etatNotOk;
                     expeditionOkBtn.Visible = true;
                 }
-            
+                
+                commandSpecificSearch.Visible = (specificSearch == DisplayType.SPECIFIC_COMMAND);
+                
+                foreach (var control in panelCommandInfo.Controls.OfType<Label>())
+                {
+                    control.ForeColor = specificSearch == DisplayType.SPECIFIC_COMMAND ? Constants.DisplaySearchSpecificColor : Constants.DisplayStandardColor;
+                }
+
                 // Metadata
 
                 panelCommandInfo.Tag = command;
-            
+
                 // Link lignecommande entity to lignecommand info pane
-                
+
                 dataGridViewCommandRef.Rows.Clear();
 
                 var lignecommandes = await LigneCommandeRepository.ReadAllLigneCommandeWithAsync(idCommande);
@@ -220,7 +249,7 @@ namespace Menagelec.Forms
                 {
                     dataGridViewCommandRef.Rows.Add(lignecommande.Produit, lignecommande.Quantite);
                 }
-                
+
                 dataGridViewCommandRef.Tag = lignecommandes;
             }
             catch (Exception exception)
