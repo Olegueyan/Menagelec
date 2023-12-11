@@ -43,6 +43,7 @@ namespace Menagelec.Forms
             this.numCommandesValue = new System.Windows.Forms.Label();
             this.infoCommandLabel = new System.Windows.Forms.Label();
             this.paneClientInfo = new System.Windows.Forms.Panel();
+            this.clientSpecificSearch = new System.Windows.Forms.Label();
             this.clientTelephone = new System.Windows.Forms.Label();
             this.clientAdresseMail = new System.Windows.Forms.Label();
             this.clientTelephoneLabel = new System.Windows.Forms.Label();
@@ -56,6 +57,7 @@ namespace Menagelec.Forms
             this.clientId = new System.Windows.Forms.Label();
             this.clientLabel = new System.Windows.Forms.Label();
             this.panelCommandInfo = new System.Windows.Forms.Panel();
+            this.commandSpecificSearch = new System.Windows.Forms.Label();
             this.expeditionOkBtn = new System.Windows.Forms.Button();
             this.paiementOkBtn = new System.Windows.Forms.Button();
             this.expeditionImage = new System.Windows.Forms.PictureBox();
@@ -233,6 +235,7 @@ namespace Menagelec.Forms
             // paneClientInfo
             // 
             this.paneClientInfo.BackColor = System.Drawing.Color.White;
+            this.paneClientInfo.Controls.Add(this.clientSpecificSearch);
             this.paneClientInfo.Controls.Add(this.clientTelephone);
             this.paneClientInfo.Controls.Add(this.clientAdresseMail);
             this.paneClientInfo.Controls.Add(this.clientTelephoneLabel);
@@ -250,6 +253,19 @@ namespace Menagelec.Forms
             this.paneClientInfo.Name = "paneClientInfo";
             this.paneClientInfo.Size = new System.Drawing.Size(380, 229);
             this.paneClientInfo.TabIndex = 10;
+            // 
+            // clientSpecificSearch
+            // 
+            this.clientSpecificSearch.AutoSize = true;
+            this.clientSpecificSearch.BackColor = System.Drawing.Color.White;
+            this.clientSpecificSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientSpecificSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.clientSpecificSearch.Location = new System.Drawing.Point(165, 0);
+            this.clientSpecificSearch.Name = "clientSpecificSearch";
+            this.clientSpecificSearch.Size = new System.Drawing.Size(184, 18);
+            this.clientSpecificSearch.TabIndex = 12;
+            this.clientSpecificSearch.Text = "(Recherche Spécifique)";
+            this.clientSpecificSearch.Visible = false;
             // 
             // clientTelephone
             // 
@@ -391,6 +407,7 @@ namespace Menagelec.Forms
             // panelCommandInfo
             // 
             this.panelCommandInfo.BackColor = System.Drawing.Color.White;
+            this.panelCommandInfo.Controls.Add(this.commandSpecificSearch);
             this.panelCommandInfo.Controls.Add(this.expeditionOkBtn);
             this.panelCommandInfo.Controls.Add(this.paiementOkBtn);
             this.panelCommandInfo.Controls.Add(this.expeditionImage);
@@ -405,6 +422,19 @@ namespace Menagelec.Forms
             this.panelCommandInfo.Name = "panelCommandInfo";
             this.panelCommandInfo.Size = new System.Drawing.Size(380, 111);
             this.panelCommandInfo.TabIndex = 11;
+            // 
+            // commandSpecificSearch
+            // 
+            this.commandSpecificSearch.AutoSize = true;
+            this.commandSpecificSearch.BackColor = System.Drawing.Color.White;
+            this.commandSpecificSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commandSpecificSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
+            this.commandSpecificSearch.Location = new System.Drawing.Point(165, 0);
+            this.commandSpecificSearch.Name = "commandSpecificSearch";
+            this.commandSpecificSearch.Size = new System.Drawing.Size(184, 18);
+            this.commandSpecificSearch.TabIndex = 13;
+            this.commandSpecificSearch.Text = "(Recherche Spécifique)";
+            this.commandSpecificSearch.Visible = false;
             // 
             // expeditionOkBtn
             // 
@@ -716,6 +746,9 @@ namespace Menagelec.Forms
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label clientSpecificSearch;
+        private System.Windows.Forms.Label commandSpecificSearch;
 
         private System.Windows.Forms.Panel panelDocuments;
 

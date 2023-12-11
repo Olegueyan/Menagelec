@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace Menagelec.Data;
 
 public static class Constants
@@ -15,4 +17,7 @@ public static class Constants
             Password = "5678"
         }
     };
+
+    public static readonly Color DisplayStandardColor = Color.FromArgb(223, 80, 0);
+    public static readonly Color DisplaySearchSpecificColor = Color.FromArgb(128, 0, 128);
 }
