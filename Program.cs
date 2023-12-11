@@ -28,7 +28,7 @@ namespace Menagelec
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CommandManagerForm());
+            Application.Run(new FormLogin());
         }
     }
 }
